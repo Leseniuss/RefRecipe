@@ -1,8 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<RefRecipe.Data.Recipe>
+
+@{
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Welcome to the Recipe database in MVC</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Koodi)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Nimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Satsikoko)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Koodi)</td>
+                
+                <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
+                <td>@Html.DisplayFor(modelItem => item.Satsikoko)</td>
+               
+                <td>
+                    <a asp-controller="Phones" asp-action="edit" asp-route-id="@item.Koodi">Edit</a> |
+                    <a asp-controller="Phones" asp-action="delete" asp-route-id="@item.Koodi">Delete</a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
