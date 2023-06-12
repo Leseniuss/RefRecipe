@@ -6,13 +6,22 @@
 
 <h1>Edit</h1>
 
-<h4>Recipe</h4>
+<h4>Phone</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Koodi" />
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" readonly />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Koodi" class="control-label"></label>
+                <input asp-for="Koodi" class="form-control" />
+                <span asp-validation-for="Koodi" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Satsikoko" class="control-label"></label>
                 <input asp-for="Satsikoko" class="form-control" />
@@ -24,7 +33,38 @@
                 <span asp-validation-for="Nimi" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="BrixMin" class="control-label"></label>
+                <input asp-for="BrixMin" class="form-control" />
+                <span asp-validation-for="BrixMin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BrixMax" class="control-label"></label>
+                <input asp-for="BrixMax" class="form-control" />
+                <span asp-validation-for="BrixMax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="pHMin" class="control-label"></label>
+                <input asp-for="pHMin" class="form-control" />
+                <span asp-validation-for="pHMin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="pHMax" class="control-label"></label>
+                <input asp-for="pHMax" class="form-control" />
+                <span asp-validation-for="pHMax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KokonaishapotMin" class="control-label"></label>
+                <input asp-for="KokonaishapotMin" class="form-control" />
+                <span asp-validation-for="KokonaishapotMin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KokonaishapotMin" class="control-label"></label>
+                <input asp-for="KokonaishapotMin" class="form-control" />
+                <span asp-validation-for="KokonaishapotMin" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -35,5 +75,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

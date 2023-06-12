@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="~/RefRecipe.styles.css" asp-append-version="true" />
 </head>
 
+<style>
+    /* .container {
+            background-image: url("refrescologo.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        } */
+    body {
+        background-image: url("refrescologo.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -25,6 +39,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ReadExcel">ReadExcel</a>
                         </li>
                     </ul>
                 </div>

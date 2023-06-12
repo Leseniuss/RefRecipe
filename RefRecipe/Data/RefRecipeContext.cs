@@ -14,5 +14,6 @@ namespace RefRecipe.Data
         }
 
         public DbSet<Recipe> Recipes { get; set; } = default!;
+        public DbSet<Ingredient> Ingredients{ get; set; } = default!;
     }
 }

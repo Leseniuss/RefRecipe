@@ -4,21 +4,60 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Welcome to the Recipe database in MVC</h1>
+<h1>Welcome to the Recipe database for Refresco Finland OY</h1>
+<style>
+    /* tbody {
+            background-image: url("refrescologo.png");
+            background-repeat: no-repeat;
+            background-size: cover;
 
-<table class="table">
+        } */
+    table {
+        width: 80%;
+        height: 80%;
+    }
+</style>
+
+<div class="col-4 p-0 justify-content-end">
+    <form asp-controller="Home" asp-action="Index">
+        <span class="btn-group">
+            <input class="form-control" type="text" name="SearchText" placeholder="Etsi tuotenimellä">
+            <input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" value="Search" />
+        </span>
+    </form>
+</div>
+<div class="col-4 p-0 justify-content-end">
+    <form asp-controller="Home" asp-action="Index">
+        <span class="btn-group">
+            <input class="form-control" type="text" name="SearchCode" placeholder="Etsi tuotekoodilla">
+            <input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" value="Search" />
+        </span>
+    </form>
+</div>
+
+<table class="hometable">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Koodi)
             </th>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.Nimi)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Satsikoko)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrixMin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrixMax)
+            </th>
+
 
             <th></th>
         </tr>
@@ -28,14 +67,18 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
                 <td>@Html.DisplayFor(modelItem => item.Koodi)</td>
-                
+
                 <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
                 <td>@Html.DisplayFor(modelItem => item.Satsikoko)</td>
-               
+                <td>@Html.DisplayFor(modelItem => item.BrixMin)</td>
+                <td>@Html.DisplayFor(modelItem => item.BrixMax)</td>
+
                 <td>
-                    <a asp-controller="Phones" asp-action="edit" asp-route-id="@item.Koodi">Edit</a> |
-                    <a asp-controller="Phones" asp-action="delete" asp-route-id="@item.Koodi">Delete</a>
+                    <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-controller="Recipes" asp-action="details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-controller="Recipes" asp-action="Recipes/delete" asp-route-id="@item.Nimi">Delete</a>
                 </td>
 
             </tr>
@@ -43,3 +86,4 @@
 
     </tbody>
 </table>
+<div class="picdiv"></div>

@@ -33,7 +33,7 @@ namespace RefRecipe.Controllers
             }
 
             var recipe = await _context.Recipes
-                .FirstOrDefaultAsync(m => m.Koodi == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (recipe == null)
             {
                 return NotFound();
