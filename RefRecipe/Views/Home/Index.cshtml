@@ -17,7 +17,7 @@
         height: 80%;
     }
 </style>
-
+ 
 <div class="col-4 p-0 justify-content-end">
     <form asp-controller="Home" asp-action="Index">
         <span class="btn-group">
@@ -34,6 +34,8 @@
         </span>
     </form>
 </div>
+
+
 
 <table class="hometable">
     <thead>
@@ -79,6 +81,7 @@
                     <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-controller="Recipes" asp-action="details" asp-route-id="@item.Id">Details</a> |
                     <a asp-controller="Recipes" asp-action="Recipes/delete" asp-route-id="@item.Nimi">Delete</a>
+                    <a asp-controller="Home" asp-action="ReadExcel2" asp-route-id="@item.Koodi">ReadExcel2</a>
                 </td>
 
             </tr>

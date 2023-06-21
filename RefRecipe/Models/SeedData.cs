@@ -28,7 +28,7 @@ public static class SeedData
             context.Recipes.AddRange(
                 new Recipe
                 {
-                    Koodi = 61020000,
+                    Koodi = "61020000",
                     Satsikoko = 12000,
                     Nimi = "Olutta",
                  
@@ -36,7 +36,7 @@ public static class SeedData
 
                 new Recipe
                 {
-                    Koodi = 61020001,
+                    Koodi = "61020000",
                     Satsikoko = 13000,
                     Nimi = "Siideriii",
 
@@ -46,7 +46,7 @@ public static class SeedData
 
                 new Recipe
                 {
-                    Koodi = 61020002,
+                    Koodi = "61020000",
                     Satsikoko = 14000,
                     Nimi = "Viiniiii",
 
@@ -54,7 +54,7 @@ public static class SeedData
 
                 new Recipe
                 {
-                    Koodi = 61020003,
+                    Koodi = "61020000",
                     Satsikoko = 17000,
                     Nimi = "Viinaaaa",
 
