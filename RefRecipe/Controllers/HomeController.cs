@@ -148,12 +148,15 @@ namespace RefRecipe.Controllers
                 connection.Open();
 
                 // Suorita SQL-kysely ja hae tiedostopolku SQLite-tietokannasta
-                string query = "SELECT FilePath FROM Recipes WHERE Koodi = @id";
+                 string query = "SELECT FilePath FROM Recipes WHERE Koodi = @id";
+               // string q2 = ".xlsx";
+               // string q1 = @"C:\reseptit\" + @id + ".xlsx";
+               // string query = q1;
                 SQLiteCommand command = new SQLiteCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
                 string filePath = (string)command.ExecuteScalar();
 
-                Console.WriteLine(filePath + "    PAPAPAPAPAPAPAAPAPPAPAPAPAPAPAPAPAPAPAPAPA");
+                 
 
                 // Käytä filePath muuttujaa haluamallasi tavalla, esim. avaa Excel-tiedosto
                 if (!string.IsNullOrEmpty(filePath))
@@ -163,9 +166,9 @@ namespace RefRecipe.Controllers
                     // Tee jotain tiedostopolulle, esim. avaa Excel-tiedosto
                     // esim. Process.Start(filePath);
 
-                    Console.WriteLine(filePath + "    PAPAPAPAPAPAPAAPAPPAPAPAPAPAPAPAPAPAPAPAPA");
+                    
 
-                    using (var package = new OfficeOpenXml.ExcelPackage(new FileInfo(filePath)))
+                    using (var package = new ExcelPackage(new FileInfo(filePath)))
                     {
                         // var worksheet = package.Workbook.Worksheets["Tuotanto (5)"]; // Oletetaan, että taulukko on ensimmäisellä välilehdellä
                         // ExcelWorksheet worksheet = package.Workbook.Worksheets[package.Workbook.Worksheets.Count];
@@ -178,9 +181,9 @@ namespace RefRecipe.Controllers
                         // Suorita SQL-kysely ja hae tiedostopolku SQLite-tietokannasta
 
 
-                        // int rowCount = worksheet.Dimension.Rows;
+                         int rowCount = worksheet.Dimension.Rows - 7;
                         // int colCount = worksheet.Dimension.Columns;
-                        int rowCount = 36;
+                       // int rowCount = 36;
                         int colCount = 10;
 
                         List<List<string>> data = new List<List<string>>();
@@ -204,7 +207,7 @@ namespace RefRecipe.Controllers
                     }
                 }
 
-                return View(); // Palauta haluamasi näkymä tai tehtävä
+                return View(); 
             }
 
             
