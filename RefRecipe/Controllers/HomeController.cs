@@ -148,9 +148,11 @@ namespace RefRecipe.Controllers
                 connection.Open();
 
                 // Suorita SQL-kysely ja hae tiedostopolku SQLite-tietokannasta
-                 string query = "SELECT FilePath FROM Recipes WHERE Koodi = @id";
-               // string q2 = ".xlsx";
-               // string q1 = @"C:\reseptit\" + @id + ".xlsx";
+                  string query = "SELECT FilePath FROM Recipes WHERE Koodi = @id";
+                // string qqq = "Select Koodi FROM Recipes WHERE Koodi = @id";
+                // string q2 = ".xlsx";
+                // string query = @"C:\reseptit\" + qqq + ".xlsx";
+               // string query = @"C:\reseptit\61066201.xlsx";
                // string query = q1;
                 SQLiteCommand command = new SQLiteCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
@@ -181,7 +183,7 @@ namespace RefRecipe.Controllers
                         // Suorita SQL-kysely ja hae tiedostopolku SQLite-tietokannasta
 
 
-                         int rowCount = worksheet.Dimension.Rows - 7;
+                         int rowCount = worksheet.Dimension.Rows - 8;
                         // int colCount = worksheet.Dimension.Columns;
                        // int rowCount = 36;
                         int colCount = 10;

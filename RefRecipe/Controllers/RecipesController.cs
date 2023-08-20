@@ -47,13 +47,30 @@ namespace RefRecipe.Controllers
         {
             return View();
         }
+        [BindProperty]
+        public Recipe Recipe { get; set; } = default!;
+
+       /* [HttpPost]
+        public async Task<IActionResult> Createe()
+        {
+            if (!ModelState.IsValid || _context.Recipes == null || Recipe == null)
+            {
+                return View();
+
+            }
+
+            _context.Recipes.Add(Recipe);
+            await _context.SaveChangesAsync();
+
+            return Redirect("/Home/Index");
+        } */
 
         // POST: Recipes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Koodi,Satsikoko,Nimi")] Recipe recipe)
+        public async Task<IActionResult> Create(Recipe recipe)
         {
             if (ModelState.IsValid)
             {
@@ -79,6 +96,96 @@ namespace RefRecipe.Controllers
             }
             return View(recipe);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Recipe recipe)
+        {
+            /* if (id != recipe.Koodi)
+             {
+                 return NotFound();
+             } */
+
+            /* if (ModelState.IsValid)
+             {
+                 try
+                 {
+                     _context.Update(recipe);
+                     await _context.SaveChangesAsync();
+                 }
+                 catch (DbUpdateConcurrencyException)
+                 {
+                     if (!RecipeExists(recipe.Koodi))
+                     {
+                         return NotFound();
+                     }
+                     else
+                     {
+                         throw;
+                     }
+                 }
+                 return RedirectToAction(nameof(Index));
+             } */
+            _context.Update(recipe);
+            await _context.SaveChangesAsync();
+            return View(recipe);
+        }
+
+        // GET: Recipes/Delete/5
+         public async Task<IActionResult> Delete(int? id)
+         {
+            /* if (id == null || _context.Recipes == null)
+             {
+                 return NotFound();
+             }
+
+             var recipe = await _context.Recipes
+                 .FirstOrDefaultAsync(m => m.Koodi = id);
+             if (recipe == null)
+             {
+                 return NotFound();
+             }
+
+             return View(recipe); */
+
+            if (id == null || _context.Recipes == null)
+            {
+                return NotFound();
+            }
+
+            var recipe = await _context.Recipes.FindAsync(id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+            return View(recipe);
+
+
+        }
+
+        // POST: Recipes/Delete/5
+        [HttpPost, ActionName("Delete")]
+         [ValidateAntiForgeryToken]
+         public async Task<IActionResult> DeleteConfirmed(int id)
+         {
+             if (_context.Recipes == null)
+             {
+                 return Problem("Entity set 'RefRecipeContext.Recipe'  is null.");
+             }
+             var recipe = await _context.Recipes.FindAsync(id);
+             if (recipe != null)
+             {
+                 _context.Recipes.Remove(recipe);
+             }
+
+             await _context.SaveChangesAsync();
+             return RedirectToAction(nameof(Index));
+         } 
+
+        /* private bool RecipeExists(int id)
+         {
+           return _context.Recipes.Any(e => e.Koodi = id);
+         } */
     }
 }
 
@@ -86,7 +193,7 @@ namespace RefRecipe.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
        /* [HttpPost]
-        [ValidateAntiForgeryToken]
+[ValidateAntiForgeryToken]
          public async Task<IActionResult> Edit(int id, [Bind("Koodi,Satsikoko,Nimi")] Recipe recipe)
          {
              if (id != recipe.Koodi)
