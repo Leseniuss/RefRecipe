@@ -18,10 +18,20 @@
     .ExcelTable {
         font-style: italic;
         font-weight: 600;
+        width: 120%;
+        height: 150%;
     }
 
 
 </style>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
 <table class="ExcelTable">
     @foreach (var row in Model)
     {
@@ -29,8 +39,23 @@
 
             @foreach (var cell in row)
             {
-                /* <td>@Math.Round(row.Count)</td> */
-                                <td class="cell-border">@cell</td>
+               
+            
+                <td class="cell-border">
+                    @{
+                        double cellValue;
+                        if (double.TryParse(@cell, out cellValue))
+                        {
+                          
+                            <td>@string.Format("{0:0.00}", cellValue)</td>
+                        }
+                        else
+                        {
+                           
+                            <td class="cell-border">@cell</td>
+                        }
+                    }
+                </td>
             }
                     </tr>
     }
