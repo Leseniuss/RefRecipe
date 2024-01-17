@@ -33,6 +33,11 @@
             <input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" value="Search" />
         </span>
     </form>
+
+   
+</div>
+<div>
+    <a class="btn-group" href="/Recipes/Create">Create</a>
 </div>
 
 
@@ -50,15 +55,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nimi)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Satsikoko)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BrixMin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BrixMax)
-            </th>
+          
 
 
             <th></th>
@@ -73,14 +70,13 @@
                 <td>@Html.DisplayFor(modelItem => item.Koodi)</td>
 
                 <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
-                <td>@Html.DisplayFor(modelItem => item.Satsikoko)</td>
-                <td>@Html.DisplayFor(modelItem => item.BrixMin)</td>
-                <td>@Html.DisplayFor(modelItem => item.BrixMax)</td>
+               
 
                 <td>
                     <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-controller="Recipes" asp-action="details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-controller="Recipes" asp-action="Recipes/delete" asp-route-id="@item.Nimi">Delete</a>
+
+                    <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id">Delete</a> |
                     <a asp-controller="Home" asp-action="ReadExcel2" asp-route-id="@item.Koodi">ReadExcel2</a>
                 </td>
 
