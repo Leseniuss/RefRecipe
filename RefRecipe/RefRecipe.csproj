@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Properties\Styles.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\refrescologo.png" />
   </ItemGroup>
 

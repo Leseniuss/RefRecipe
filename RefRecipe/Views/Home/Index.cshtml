@@ -45,9 +45,7 @@
 <table class="hometable">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Koodi)
             </th>
@@ -66,18 +64,20 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                
                 <td>@Html.DisplayFor(modelItem => item.Koodi)</td>
 
                 <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
                
 
                 <td>
+                    <a asp-controller="Home" asp-action="ReadExcel2" asp-route-id="@item.Koodi">Resepti</a> |
+                    <a>-------------------</a> |
                     <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-controller="Recipes" asp-action="details" asp-route-id="@item.Id">Details</a> |
-
+                    <a>-------------------</a> |
                     <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id">Delete</a> |
-                    <a asp-controller="Home" asp-action="ReadExcel2" asp-route-id="@item.Koodi">ReadExcel2</a>
+                    
+                    
                 </td>
 
             </tr>
@@ -85,4 +85,3 @@
 
     </tbody>
 </table>
-<div class="picdiv"></div>

@@ -10,15 +10,18 @@
 </head>
 
 <style>
-    /* .container {
-            background-image: url("refrescologo.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-        } */
+   
     body {
         background-image: url("refrescologo.png");
+        background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+    }
+
+    .custom-main {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
     }
 
 </style>
@@ -40,23 +43,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ReadExcel">ReadExcel</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="pb-3 container-fluid ml-3 mr-3">
+        <main role="main" class="text-center">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - RefRecipe - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.ToString("dd/MM/yyyy") - RefRecipe - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

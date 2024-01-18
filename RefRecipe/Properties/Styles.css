@@ -1,0 +1,6 @@
+﻿body {
+    background-image: url('refrescologo.pgn'); /* Korvaa 'polku_taustakuvaan.jpg' todellisella kuvan polulla */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
