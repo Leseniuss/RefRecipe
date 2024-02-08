@@ -12,10 +12,22 @@
             background-size: cover;
 
         } */
-    table {
+    .hometable {
         width: 100%;
         height: 100%;
+        border-collapse: collapse;
+      
     }
+
+        .hometable th, .hometable td {
+            border-bottom: 2px solid blue; 
+            padding: 4px;
+            text-align: center;
+        }
+
+        .hometable th {
+            background-color: #f2f2f2;
+        }
 </style>
  
 <div class="col-4 p-0 justify-content-end">
@@ -36,8 +48,8 @@
 
    
 </div>
-<div>
-    <a class="btn-group" href="/Recipes/Create">Create</a>
+<div class="col-4 p-0 justify-content-end">
+    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Recipes/Create">Create</a>
 </div>
 
 
@@ -53,7 +65,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nimi)
             </th>
-          
+            <th>TOIMINNOT</th>
+
 
 
             <th></th>
@@ -72,9 +85,9 @@
 
                 <td>
                     <a asp-controller="Home" asp-action="ReadExcel2" asp-route-id="@item.Koodi">Resepti</a> |
-                    <a>-------------------</a> |
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
                     <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id">Edit</a> |
-                    <a>-------------------</a> |
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
                     <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id">Delete</a> |
                     
                     

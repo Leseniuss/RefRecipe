@@ -1,0 +1,104 @@
+﻿@model IEnumerable<RefRecipe.Data.Material>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Welcome to the Material database for Refresco Finland OY</h1>
+<style>
+    /* tbody {
+                background-image: url("refrescologo.png");
+                background-repeat: no-repeat;
+                background-size: cover;
+
+            } */
+    .hometable {
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+    }
+
+        .hometable th, .hometable td {
+            border-bottom: 2px solid red; /* Voit säätää väriä ja paksuutta tarpeen mukaan */
+            padding: 4px;
+            text-align: center;
+        }
+
+        .hometable th {
+            background-color: #f2f2f2;
+        }
+</style>
+
+<div class="col-4 p-0 justify-content-end">
+    <form asp-controller="Materials" asp-action="Index">
+        <span class="btn-group">
+            <input class="form-control" type="text" name="SearchText2" placeholder="Etsi materiaalin nimellä">
+            <input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" value="Search" />
+        </span>
+    </form>
+</div>
+<div class="col-4 p-0 justify-content-end">
+    <form asp-controller="Materials" asp-action="Index">
+        <span class="btn-group">
+            <input class="form-control" type="text" name="SearchCode2" placeholder="Etsi materiaalin koodilla">
+            <input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" value="Search" />
+        </span>
+    </form>
+
+
+</div>
+<div class="col-4 p-0 justify-content-end">
+    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Recipes/Create">Create</a>
+</div>
+
+
+
+<table class="hometable" id="DataTable">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.SapCode)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@Html.DisplayFor(modelItem => item.SapCode)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Location)</td>
+
+
+               <!-- <td>
+                    <a asp-controller="Home" asp-action="ReadExcel2" asp-route-id="@item.SapCode">Resepti</a> |
+                    <a>                   </a> |
+                    <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id">Edit</a> |
+                    <a>                   </a> |
+                    <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id">Delete</a> |
+
+
+                </td> -->
+
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -30,8 +30,7 @@ namespace RefRecipe.Data
         [Required(ErrorMessage = "Nimi on pakollinen.")]
         public string? Nimi { get; set; }
 
-       // [Required(ErrorMessage = "FilePath on pakollinen.")]
-        public string? FilePath { get; set; }
+       
 
         // Voit lisätä muita ominaisuuksia tähän, kuten ainesosat, ohjeet jne.
         // [MaxLength(255)] // Oletuksena tiedoston polku voi olla enintään 255 merkkiä pitkä

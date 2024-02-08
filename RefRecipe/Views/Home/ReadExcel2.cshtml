@@ -1,27 +1,26 @@
-﻿@model List<List<string>>
+﻿@model Tuple<List<List<string>>, List<string>>
 
 <style>
     .row-border {
-
         border: 1px solid black;
         margin-bottom: 5px;
         line-height: 150%;
-
+         
     }
-    .cell-border {
 
-        border: 1px solid blue;
+    .cell-border {
+        border: 2px solid blue;
         margin-bottom: 5px;
         line-height: 150%;
     }
 
     .ExcelTable {
         font-style: italic;
-        font-weight: 600;
+        font-weight: 500;
+        color: red;
         width: 100%;
         height: 150%;
     }
-
 
 </style>
 
@@ -29,35 +28,50 @@
 {
     <div class="alert alert-danger">
         @ViewBag.ErrorMessage
+        
     </div>
 }
 
+
+
 <table class="ExcelTable">
-    @foreach (var row in Model)
+    @foreach (var row in Model.Item1)
     {
-                    <tr style="background-color: @(Model.IndexOf(row) % 2 == 0 ? "gray" : "white")">
+        <tr style="background-color: @(Model.Item1.IndexOf(row) % 2 == 0 ? "blue" : "white")">
 
             @foreach (var cell in row)
             {
-               
-            
-                <td class="cell-border">
-                    @{
-                        double cellValue;
-                        if (double.TryParse(@cell, out cellValue))
-                        {
-                          
-                            <td>@string.Format("{0:0.00}", cellValue)</td>
-                        }
-                        else
-                        {
-                           
-                            <td class="cell-border">@cell</td>
-                        }
-                    }
-                </td>
+
+
+                double cellValue;
+                if (double.TryParse(@cell, out cellValue))
+                {
+
+                    <td class="cell-border">@string.Format("{0:0.00}", cellValue)</td>
+                }
+                else
+                {
+
+                    <td class="cell-border">@cell</td>
+                }
+
             }
-                    </tr>
+        </tr>
     }
 </table>
 
+<table class="ExcelTable">
+    <tr>PEKEKEKEKEKEKKEKEKE</tr>
+    @foreach (var row in Model.Item2)
+    {
+       <tr>
+            <th class="cell-border">@row</th>
+       </tr>
+       
+       
+    }
+</table>
+
+
+
+    

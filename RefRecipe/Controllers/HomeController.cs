@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.Data.Sqlite;
 using System.Data.SQLite;
 using System.Data;
+using Microsoft.CodeAnalysis.CodeMetrics;
 
 namespace RefRecipe.Controllers
 {
@@ -70,11 +71,17 @@ namespace RefRecipe.Controllers
             List<Recipe> recipes;
             if (SearchText != "" && SearchText != null)
             {
+
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 recipes = _context.Recipes.Where(p => p.Nimi.Contains(SearchText)).ToList();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+
             }
             else if (SearchCode != "" && SearchCode != null)
             {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 recipes = _context.Recipes.Where(p => p.Koodi.Contains(SearchCode)).ToList();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
             else
             {
@@ -206,23 +213,41 @@ namespace RefRecipe.Controllers
                                 int colCount = 10;
 
                                 List<List<string>> data = new List<List<string>>();
+                                List<string> codeData = new List<string>();
 
                                 for (int row = 1; row <= rowCount; row++)
                                 {
                                     List<string> rowData = new List<string>();
+                                   // List<string> codeData = new List<string>();
 
                                     for (int col = 1; col <= colCount; col++)
                                     {
+                                        var cellValue = worksheet.Cells[row, col].Value?.ToString();
+
                                         if (col != 4 && col != 5 && col != 6 && col != 7)
                                         {
-                                            rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                            // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                            rowData.Add(cellValue);
                                         }
+                                        if (col == 1 && rowCount >= 11 && rowCount <= 20)
+                                        {
+                                            codeData.Add(cellValue);
+
+                                        } 
                                     }
 
                                     data.Add(rowData);
                                 }
-
-                                return View(data);
+                                /*  ViewBag.Data = data;
+                                  ViewBag.CodeData = codeData;
+                                  return View();
+                                  return View(data); */
+                                //  Console.WriteLine(codeData[0] + " 121212121212121212121212121121212");
+                                Debug.WriteLine(codeData[0] + " 121212121212121212121212121121212");
+                                var tupleModel = new Tuple<List<List<string>>, List<string>>(data, codeData);
+                                
+                                return View(tupleModel);
+                                
                             }
 
                         }
