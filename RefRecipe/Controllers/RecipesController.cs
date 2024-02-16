@@ -76,7 +76,7 @@ namespace RefRecipe.Controllers
             {
                 _context.Add(recipe);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("AuthIndex", "Home");
             }
             return View(recipe);
         }
@@ -129,7 +129,7 @@ namespace RefRecipe.Controllers
             _context.Update(recipe);
             await _context.SaveChangesAsync();
             // return View(recipe);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("AuthIndex", "Home");
         }
 
         // GET: Recipes/Delete/5
@@ -182,7 +182,7 @@ namespace RefRecipe.Controllers
 
              await _context.SaveChangesAsync();
             // return RedirectToAction(nameof(Index));
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("AuthIndex", "Home");
         } 
 
         /* private bool RecipeExists(int id)
