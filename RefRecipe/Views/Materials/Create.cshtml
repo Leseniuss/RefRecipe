@@ -1,0 +1,47 @@
+﻿@model RefRecipe.Data.Material
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create new Materials</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SapCode" class="control-label"></label>
+                <input asp-for="SapCode" class="form-control" />
+                <span asp-validation-for="SapCode" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+                    
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+   
+   <!-- <a class="btn-group" href="https://localhost:7013/">Back to List</a> -->
+    <a class="btn-group" href="/Materials/Index">Back to materials List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

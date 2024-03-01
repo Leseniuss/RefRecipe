@@ -1,0 +1,55 @@
+﻿@model RefRecipe.Data.Material
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Materials</h1>
+
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="SapCode" class="control-label"></label>
+                <input asp-for="SapCode" class="form-control" />
+                <span asp-validation-for="SapCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            
+                     
+            <div class="form-group">
+                <label for="password">Salasana:</label>
+                <input type="password" id="password" name="password" />
+                <input type="submit" value="Edit Material" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div>@ViewBag.ErrorMessage</div>
+}
+
+<div>
+    <a class="btn-group" href="/Material/Index">Back To Materials List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

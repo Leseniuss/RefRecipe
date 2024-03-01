@@ -32,23 +32,7 @@ namespace RefRecipe.Controllers
 
         public IList<Recipe> Recipe { get; set; } = default!;
 
-        /* public ActionResult Index(string password)
-         {
-             if (string.IsNullOrEmpty(password))
-             {
-                 ViewBag.ErrorMessage = "Anna salasana";
-                 return View();
-             }
-             else if (password == "salasana123")
-             {
-                 return RedirectToAction("AuthIndex");
-             }
-             else
-             {
-                 ViewBag.ErrorMessage = "Virheellinen salasana";
-                 return View();
-             }
-         } */
+        
 
         public IList<Password> Passwords { get; set; } = default!;
 
@@ -95,9 +79,6 @@ namespace RefRecipe.Controllers
                     // Väärä salasana
                     ViewBag.ErrorMessage = "Virheellinen salasana";
                      return View();
-                   
-
-
 
                 }
             }
@@ -441,7 +422,7 @@ namespace RefRecipe.Controllers
                 // Voit tehdä tässä jotain virhetilanteessa, esimerkiksi näyttää virhesivun
                 // return View("Error");
                 ViewBag.ErrorMessage = "Reseptiä ei löydy.";
-                return RedirectToAction("AuthIndex", "Home");
+                return RedirectToAction("AuthIndex2", "Home");
             }
 
             // Jos ei tapahtunut virhettä, palaa tyhjällä datalla

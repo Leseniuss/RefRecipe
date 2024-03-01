@@ -40,7 +40,7 @@
 <table class="ExcelTable">
     @foreach (var row in Model)
     {
-        <tr style="background-color: @(Model.IndexOf(row) % 2 == 0 ? "blue" : "white")">
+        <tr style="background-color: @(Model.IndexOf(row) % 2 == 0 ? "lightblue" : "white")">
 
             @foreach (var cell in row)
             {

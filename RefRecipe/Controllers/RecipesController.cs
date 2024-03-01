@@ -48,22 +48,24 @@ namespace RefRecipe.Controllers
             return View();
         }
         [BindProperty]
+
+
+        /* [HttpPost]
+         public async Task<IActionResult> Createe()
+         {
+             if (!ModelState.IsValid || _context.Recipes == null || Recipe == null)
+             {
+                 return View();
+
+             }
+
+             _context.Recipes.Add(Recipe);
+             await _context.SaveChangesAsync();
+
+             return Redirect("/Home/Index");
+         } */
+
         public Recipe Recipe { get; set; } = default!;
-
-       /* [HttpPost]
-        public async Task<IActionResult> Createe()
-        {
-            if (!ModelState.IsValid || _context.Recipes == null || Recipe == null)
-            {
-                return View();
-
-            }
-
-            _context.Recipes.Add(Recipe);
-            await _context.SaveChangesAsync();
-
-            return Redirect("/Home/Index");
-        } */
 
         // POST: Recipes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -95,38 +97,14 @@ namespace RefRecipe.Controllers
                 return NotFound();
             }
             return View(recipe);
-        }
+        } 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Recipe recipe)
         {
-            /* if (id != recipe.Koodi)
-             {
-                 return NotFound();
-             } */
-
-            /* if (ModelState.IsValid)
-             {
-                 try
-                 {
-                     _context.Update(recipe);
-                     await _context.SaveChangesAsync();
-                 }
-                 catch (DbUpdateConcurrencyException)
-                 {
-                     if (!RecipeExists(recipe.Koodi))
-                     {
-                         return NotFound();
-                     }
-                     else
-                     {
-                         throw;
-                     }
-                 }
-                 return RedirectToAction(nameof(Index));
-             } */
-            _context.Update(recipe);
+            
+           _context.Update(recipe);
             await _context.SaveChangesAsync();
             // return View(recipe);
             return RedirectToAction("AuthIndex", "Home");
