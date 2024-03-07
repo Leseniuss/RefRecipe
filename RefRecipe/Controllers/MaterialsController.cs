@@ -62,23 +62,29 @@ namespace RefRecipe.Controllers
         }
         public Material Materials { get; set; } = default!;
 
-        // POST: Recipes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Material material)
+        
+
+        public async Task<IActionResult> Delete(int? id)
         {
-            if (ModelState.IsValid)
+
+
+            if (id == null || _context.Materials == null)
             {
-                _context.Add(material);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Materials");
+                return NotFound();
+            }
+
+            var material = await _context.Materials.FindAsync(id);
+            if (material == null)
+            {
+                return NotFound();
             }
             return View(material);
+            // return RedirectToAction("Index", "Home");
+
+
         }
 
-       
+
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -93,6 +99,33 @@ namespace RefRecipe.Controllers
                 return NotFound();
             }
             return View(material);
+        }
+
+        // POST: Recipes/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Material material, string password)
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                ViewBag.ErrorMessage = "Anna Salasana";
+                return View();
+            }
+            if (ModelState.IsValid && password != null && password == "22")
+            {
+                _context.Add(material);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Materials");
+            }
+            else
+            {
+                // Väärä salasana
+                ViewBag.ErrorMessage = "VIRHEELLINEN SALASANA";
+                return View();
+            }
+           // return View(material);
         }
 
         [HttpPost]
@@ -114,41 +147,19 @@ namespace RefRecipe.Controllers
             else
             {
                 // Väärä salasana
-                ViewBag.ErrorMessage = "Virheellinen salasana";
+                ViewBag.ErrorMessage = "VIRHEELLINEN SALASANA";
                 return View();
 
             }
 
         }
-
-        
-
-        public async Task<IActionResult> Delete(int? id)
-        {
-           
-
-            if (id == null || _context.Materials == null)
-            {
-                return NotFound();
-            }
-
-            var material = await _context.Materials.FindAsync(id);
-            if (material == null )
-            {
-                return NotFound();
-            }
-            return View(material);
-            // return RedirectToAction("Index", "Home");
-
-
-        }
-
         // POST: Recipes/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id, string password)
+        public async Task<IActionResult> Delete(int id, Material material, string password)
         {
-            var material = await _context.Materials.FindAsync(id);
+           // var material = await _context.Materials.FindAsync(id);
             if (string.IsNullOrEmpty(password))
             {
                 ViewBag.ErrorMessage = "Anna salasana";
@@ -157,14 +168,15 @@ namespace RefRecipe.Controllers
             
             if (material != null && password != null && password == "22")
             {
-                _context.Materials.Remove(material);
+               // _context.Materials.Remove(material);
+               _context.Remove(material);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Materials");
             }
             else
             {
                 // Väärä salasana
-                ViewBag.ErrorMessage = "Virheellinen salasana";
+                ViewBag.ErrorMessage = "VIRHEELLINEN SALASANA";
                 return View();
             }
 

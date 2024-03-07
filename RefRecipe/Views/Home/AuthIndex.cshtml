@@ -2,9 +2,10 @@
 
 @{
     ViewData["Title"] = "Index";
+    var recipeList = Model.ToList();
 }
 
-<h1>Welcome to the Recipe database for Refresco Finland OY</h1>
+<h1 style="color: green;">Welcome to the Recipe database for Refresco Finland OY</h1>
 <style>
    
 
@@ -56,7 +57,7 @@
    
 </div>
 <div class="col-4 p-0 justify-content-end">
-    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Recipes/Create">Create</a>
+    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Recipes/Create">Create New Recipe</a>
 </div>
 
 
@@ -83,7 +84,7 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+                <tr style="background-color: @(recipeList.IndexOf(item) % 2 == 0 ? "lightgreen" : "orange")">
                 
                 <td>@Html.DisplayFor(modelItem => item.Koodi)</td>
 
@@ -106,3 +107,13 @@
     </tbody>
 </table>
 </body>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="text-danger">@ViewBag.ErrorMessage</div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -2,41 +2,79 @@
 
 @{
     ViewData["Title"] = "Create";
+    
 }
 
-<h1>Create</h1>
+<!DOCTYPE html>
 
-<h4>Recipe</h4>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RefRecipe</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/RefRecipe.styles.css" asp-append-version="true" />
+</head>
+<style>
+
+    body {
+        background-image: url('refrescologo.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .custom-main {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+</style>
+<body>
+
+    <h1 style="color: blue;">Create New Recipe</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row" >
+    <div class="col-md-6 offset-md-3">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
             <div class="form-group">
-                <label asp-for="Koodi" class="control-label"></label>
+                    <label asp-for="Koodi" class="control-label" style="font-size: 20px; color: blue;"></label>
                 <input asp-for="Koodi" class="form-control" />
                 <span asp-validation-for="Koodi" class="text-danger"></span>
             </div>
           
             <div class="form-group">
-                <label asp-for="Nimi" class="control-label"></label>
+                    <label asp-for="Nimi" class="control-label" style="font-size: 20px; color: blue;"></label>
                 <input asp-for="Nimi" class="form-control" />
                 <span asp-validation-for="Nimi" class="text-danger"></span>
             </div>
-                    
-            
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label for="password">Enter Password:</label>
+                <input type="password" id="password" name="password" />
+                <input type="submit" value="Create New Recipe" class="btn btn-primary" />
             </div>
+        
         </form>
     </div>
 </div>
+</body>
+</html>
+@if (ViewBag.ErrorMessage != null)
+{
+<div class="text-danger">@ViewBag.ErrorMessage</div>
+}
 
 <div>
    
    <!-- <a class="btn-group" href="https://localhost:7013/">Back to List</a> -->
-    <a class="btn-group" href="/Home/AuthIndex">Back to List</a>
+    <a class="btn-group" href="/Home/AuthIndex">Back to Recipes List</a>
 </div>
+<a href="https://www.refresco.fi/fi/"> <img src="/refrescologo.png" width="40%" height="20%" /></a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

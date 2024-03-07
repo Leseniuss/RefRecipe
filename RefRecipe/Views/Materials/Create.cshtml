@@ -4,44 +4,76 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create new Materials</h1>
+<h1 style="color: blue;">Create New Materials</h1>
 
 <hr />
+<style>
+
+    h1 {
+      
+        background-image: url("/Materials/refrescologo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .form-group {
+        background-image: url("/Materials/refrescologo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .custom-main {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+</style>
 <div class="row">
     <div class="col-md-6 offset-md-3">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
             <div class="form-group">
-                <label asp-for="SapCode" class="control-label"></label>
+                <label asp-for="SapCode" class="control-label" style="font-size: 20px; color: blue;"></label>
                 <input asp-for="SapCode" class="form-control" />
                 <span asp-validation-for="SapCode" class="text-danger"></span>
             </div>
-          
+           
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label" style="font-size: 20px; color: blue;"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+          
             <div class="form-group">
-                <label asp-for="Location" class="control-label"></label>
+                <label asp-for="Location" class="control-label" style="font-size: 20px; color: blue;"></label>
                 <input asp-for="Location" class="form-control" />
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
-                    
-            
+       
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label for="password">Enter Password:</label>
+                <input type="password" id="password" name="password" />
+                <input type="submit" value="Create New Material" class="btn btn-primary" />
             </div>
+            
         </form>
     </div>
 </div>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="text-danger">@ViewBag.ErrorMessage</div>
+}
 
 <div>
    
    <!-- <a class="btn-group" href="https://localhost:7013/">Back to List</a> -->
-    <a class="btn-group" href="/Materials/Index">Back to materials List</a>
+    <a class="btn-group" href="/Materials">Back to materials List</a>
 </div>
-
+<a href="https://www.refresco.fi/fi/"> <img src="/refrescologo.png" width="40%" height="20%" /></a>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

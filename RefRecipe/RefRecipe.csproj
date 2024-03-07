@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\Auth2.cshtml" />
-    <Content Remove="wwwroot\refrescologo.png" />
+    
   </ItemGroup>
 
   <ItemGroup>

@@ -2,10 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
+    var recipeList = Model.ToList();
 }
 
 
-<h1>Welcome to the Material database for Refresco Finland OY</h1>
+<h1 style="color: green;">Welcome to the Material database for Refresco Finland OY</h1>
 <style>
     /* tbody {
                 background-image: url("refrescologo.png");
@@ -78,7 +79,7 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+            <tr style="background-color: @(recipeList.IndexOf(item) % 2 == 0 ? "lightgreen" : "orange")">
 
                 <td>@Html.DisplayFor(modelItem => item.SapCode)</td>
 

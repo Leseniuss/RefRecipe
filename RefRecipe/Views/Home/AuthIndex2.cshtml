@@ -2,16 +2,17 @@
 
 @{
     ViewData["Title"] = "Index";
+    var recipeList = Model.ToList();
 }
 
-<h1>Welcome to the Recipe database for Refresco Finland OY</h1>
+<h1 style="color: green;">Welcome to the Recipe database for Refresco Finland OY</h1>
 <style>
-    /* tbody {
+     tbody {
             background-image: url("refrescologo.png");
             background-repeat: no-repeat;
             background-size: cover;
 
-        } */
+        } 
     .hometable {
         width: 100%;
         height: 100%;
@@ -74,7 +75,7 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+            <tr style="background-color: @(recipeList.IndexOf(item) % 2 == 0 ? "lightgreen" : "orange")">
                 
                 <td>@Html.DisplayFor(modelItem => item.Koodi)</td>
 
@@ -93,3 +94,7 @@
 
     </tbody>
 </table>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="text-danger">@ViewBag.ErrorMessage</div>
+}

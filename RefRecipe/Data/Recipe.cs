@@ -32,7 +32,5 @@ namespace RefRecipe.Data
 
        
 
-        // Voit lisätä muita ominaisuuksia tähän, kuten ainesosat, ohjeet jne.
-        // [MaxLength(255)] // Oletuksena tiedoston polku voi olla enintään 255 merkkiä pitkä
     }
 }

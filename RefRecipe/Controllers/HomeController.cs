@@ -422,7 +422,8 @@ namespace RefRecipe.Controllers
                 // Voit tehdä tässä jotain virhetilanteessa, esimerkiksi näyttää virhesivun
                 // return View("Error");
                 ViewBag.ErrorMessage = "Reseptiä ei löydy.";
-                return RedirectToAction("AuthIndex2", "Home");
+                 return RedirectToAction("AuthIndex2", "Home");
+               // return View();
             }
 
             // Jos ei tapahtunut virhettä, palaa tyhjällä datalla

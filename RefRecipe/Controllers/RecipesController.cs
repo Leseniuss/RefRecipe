@@ -72,15 +72,26 @@ namespace RefRecipe.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Recipe recipe)
+        public async Task<IActionResult> Create(Recipe recipe, string password)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(password))
+            {
+                ViewBag.ErrorMessage = "Anna Salasana";
+                return View();
+            }
+            if (ModelState.IsValid && password != null && password == "22")
             {
                 _context.Add(recipe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("AuthIndex", "Home");
             }
-            return View(recipe);
+            else
+            {
+                // Väärä salasana
+                ViewBag.ErrorMessage = "VIRHEELLINEN SALASANA";
+                return View();
+               // return View(recipe);
+            }
         }
 
         // GET: Recipes/Edit/5
@@ -101,13 +112,28 @@ namespace RefRecipe.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Recipe recipe)
+        public async Task<IActionResult> Edit(int id, Recipe recipe, string password)
         {
-            
-           _context.Update(recipe);
-            await _context.SaveChangesAsync();
-            // return View(recipe);
-            return RedirectToAction("AuthIndex", "Home");
+            if (string.IsNullOrEmpty(password))
+            {
+                ViewBag.ErrorMessage = "Anna salasana";
+                return View();
+            }
+            if (password != null && password == "22")
+            {
+                _context.Update(recipe);
+                await _context.SaveChangesAsync();
+                // return View(recipe);
+                return RedirectToAction("AuthIndex", "Home");
+            }
+            else
+            {
+                // Väärä salasana
+                ViewBag.ErrorMessage = "VIRHEELLINEN SALASANA";
+                return View();
+
+            }
+
         }
 
         // GET: Recipes/Delete/5
@@ -146,21 +172,35 @@ namespace RefRecipe.Controllers
         // POST: Recipes/Delete/5
         [HttpPost, ActionName("Delete")]
          [ValidateAntiForgeryToken]
-         public async Task<IActionResult> DeleteConfirmed(int id)
+         public async Task<IActionResult> Delete(int id, Recipe recipe, string password)
          {
-             if (_context.Recipes == null)
-             {
-                 return Problem("Entity set 'RefRecipeContext.Recipe'  is null.");
-             }
-             var recipe = await _context.Recipes.FindAsync(id);
-             if (recipe != null)
-             {
-                 _context.Recipes.Remove(recipe);
-             }
+            if (string.IsNullOrEmpty(password))
+            {
+                ViewBag.ErrorMessage = "Anna salasana";
+                return View();
+            }
+            /* var recipe = await _context.Recipes.FindAsync(id);
+              if (recipe != null)
+              {
+                  _context.Recipes.Remove(recipe);
+              }
 
-             await _context.SaveChangesAsync();
-            // return RedirectToAction(nameof(Index));
-            return RedirectToAction("AuthIndex", "Home");
+              await _context.SaveChangesAsync();
+             // return RedirectToAction(nameof(Index));
+             return RedirectToAction("AuthIndex", "Home"); */
+            if (recipe != null && password != null && password == "22")
+            {
+                // _context.Materials.Remove(material);
+                _context.Remove(recipe);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("AuthIndex", "Home");
+            }
+            else
+            {
+                // Väärä salasana
+                ViewBag.ErrorMessage = "VIRHEELLINEN SALASANA";
+                return View();
+            }
         } 
 
         /* private bool RecipeExists(int id)

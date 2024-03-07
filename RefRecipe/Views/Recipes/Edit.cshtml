@@ -4,38 +4,45 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1 style="color: yellowgreen;">Edit Recipe</h1>
 
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 offset-md-3">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
-                <label asp-for="Koodi" class="control-label"></label>
+                <label asp-for="Koodi" class="control-label" style="font-size: 20px; color: yellowgreen;"></label>
                 <input asp-for="Koodi" class="form-control" />
                 <span asp-validation-for="Koodi" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label asp-for="Nimi" class="control-label"></label>
+                <label asp-for="Nimi" class="control-label" style="font-size: 20px; color: yellowgreen;"></label>
                 <input asp-for="Nimi" class="form-control" />
                 <span asp-validation-for="Nimi" class="text-danger"></span>
             </div>
             
-                     
             <div class="form-group">
-                <input type="submit" value="Edit" class="btn btn-primary" />
+                <label for="password">Enter Password:</label>
+                <input type="password" id="password" name="password" />
+                <input type="submit" value="Edit Recipe" class="btn btn-primary" />
             </div>
+            
         </form>
     </div>
 </div>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="text-danger">@ViewBag.ErrorMessage</div>
+}
 
 <div>
-    <a class="btn-group" href="/Home/AuthIndex">Back to List</a>
+    <a class="btn-group" href="/Home/AuthIndex">Back To Recipes List</a>
 </div>
-
+<a href="https://www.refresco.fi/fi/"> <img src="/refrescologo.png" width="40%" height="20%" /></a>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
