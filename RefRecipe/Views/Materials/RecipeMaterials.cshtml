@@ -1,0 +1,73 @@
+﻿@model List<List<string>>
+
+<style>
+
+    body {
+        background-image: url('refrescologo.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .row-border {
+        border: 1px solid black;
+        margin-bottom: 5px;
+        line-height: 150%;
+    }
+
+    .cell-border {
+        border: 2px solid blue;
+        margin-bottom: 5px;
+        line-height: 150%;
+    }
+
+    .ExcelTable {
+        font-style: italic;
+        font-weight: 500;
+        color: red;
+        width: 100%;
+        height: 120%;
+        background-image: url('refrescologo.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+
+    </div>
+}
+
+<div class="col-4 p-0 justify-content-end">
+    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Home/AuthIndex">Back To List</a>
+</div>
+
+
+<table class="ExcelTable">
+    @foreach (var row in Model)
+    {
+        <tr style="background-color: @(Model.IndexOf(row) % 2 == 0 ? "lightblue" : "white")">
+
+            @foreach (var cell in row)
+            {
+
+
+                double cellValue;
+                if (double.TryParse(@cell, out cellValue))
+                {
+
+                    <td class="cell-border">@cellValue</td>
+                }
+                else
+                {
+
+                    <td class="cell-border">@cell</td>
+                }
+
+            }
+        </tr>
+    }
+</table>

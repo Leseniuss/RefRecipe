@@ -92,11 +92,13 @@
                
 
                 <td>
-                    <a asp-controller="Home" asp-action="ReadExcel" asp-route-id="@item.Koodi">Resepti</a> |
+                    <a asp-controller="Home" asp-action="ReadExcel" asp-route-id="@item.Koodi" target="_blank">Recipe</a> |
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
-                    <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id" target="_blank">Edit</a> |
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
-                    <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id">Delete</a> |
+                    <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id" target="_blank">Delete</a> |
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
+                    <a asp-controller="Materials" asp-action="RecipeMaterials" asp-route-id="@item.Koodi" target="_blank">RecipeMaterials</a> |
                     
                     
                 </td>

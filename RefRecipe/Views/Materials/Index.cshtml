@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    var recipeList = Model.ToList();
+    var materialList = Model.ToList();
 }
 
 
@@ -21,7 +21,7 @@
     }
 
         .hometable th, .hometable td {
-            border-bottom: 2px solid red; /* Voit säätää väriä ja paksuutta tarpeen mukaan */
+            border-bottom: 2px solid red;
             padding: 4px;
             text-align: center;
         }
@@ -79,7 +79,7 @@
 
         @foreach (var item in Model)
         {
-            <tr style="background-color: @(recipeList.IndexOf(item) % 2 == 0 ? "lightgreen" : "orange")">
+            <tr style="background-color: @(materialList.IndexOf(item) % 2 == 0 ? "lightgreen" : "orange")">
 
                 <td>@Html.DisplayFor(modelItem => item.SapCode)</td>
 
@@ -90,9 +90,9 @@
 
                 <td>
                     
-                    <a>                   </a> |
+                    
                     <a asp-controller="Materials" asp-action="edit" asp-route-id="@item.Id">Edit</a> |
-                    <a>                   </a> |
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
                     <a asp-controller="Materials" asp-action="delete" asp-route-id="@item.Id">Delete</a> |
 
 

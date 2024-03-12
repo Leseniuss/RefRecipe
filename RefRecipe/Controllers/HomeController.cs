@@ -10,6 +10,7 @@ using System.Data;
 using Microsoft.CodeAnalysis.CodeMetrics;
 using System.Data.Entity;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace RefRecipe.Controllers
 {
@@ -43,6 +44,7 @@ namespace RefRecipe.Controllers
             if (string.IsNullOrEmpty(password))
             {
                 ViewBag.ErrorMessage = "Anna salasana";
+               // Log.Information("Salasana Kenttä Tyhjä");
                 return View();
             }
             else
@@ -59,16 +61,19 @@ namespace RefRecipe.Controllers
                 if (passwords != null && passwords == "11")
                 {
 
-                    // Oikea salasana, ohjaa AuthIndex-toimintoon
+                    // Oikea salasana, ohjaa AuthIndex
+                    Log.Warning("Ohjataan Authindex");
                      return RedirectToAction("AuthIndex");
+                    
                    // return RedirectToAction("Auth2");
                 }
                 if (passwords != null && passwords == "22")
                 {
-                    // Oikea salasana, ohjaa AuthIndexx-toimintoon
+                    // Oikea salasana, ohjaa AuthIndex2
                     //  return RedirectToAction("Auth2");
                     //  C: \Users\Jyri Leskinen\source\repos\RefRecipe\RefRecipe\Views\Home\AuthIndex2.cshtml
                     // return Redirect("Perkele");
+                    Log.Warning("Ohjataan Authindex2");
                     return RedirectToAction("AuthIndex2");
                  //  return RedirectToAction("localhost:5013/Home/AuthIndex2");
 
@@ -78,7 +83,8 @@ namespace RefRecipe.Controllers
                 {
                     // Väärä salasana
                     ViewBag.ErrorMessage = "Virheellinen salasana";
-                     return View();
+                    Log.Information("Väärä salasana");
+                    return View();
 
                 }
             }
@@ -265,15 +271,17 @@ namespace RefRecipe.Controllers
                                 var worksheet = package.Workbook.Worksheets[0];
 
                                 int rowCount = worksheet.Dimension.Rows - 8;
-                                int colCount = 10;
+                                int colCount = 11;
 
                                 List<List<string>> data = new List<List<string>>();
                                 List<string> codeData = new List<string>();
+                                List<string> codes = new List<string>();
 
                                 for (int row = 1; row <= rowCount; row++)
                                 {
                                     List<string> rowData = new List<string>();
                                    // List<string> codeData = new List<string>();
+                                   
 
                                     for (int col = 1; col <= colCount; col++)
                                     {
@@ -283,20 +291,43 @@ namespace RefRecipe.Controllers
                                         {
                                             // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
                                             rowData.Add(cellValue);
+                                            Debug.WriteLine(cellValue + "  CCCEEEEEELLLLLLVAAAAAALLLLUUUEEE");
+
                                         }
-                                        if (col == 1 && rowCount >= 11 && rowCount <= 20)
+                                        if ((col == 1) && row >= 11 && row <= 20)
+                                        {
+                                            codes.Add(cellValue);
+                                        }
+                                       /* if (col == 1 && rowCount >= 11 && rowCount <= 20)
                                         {
                                             codeData.Add(cellValue);
 
-                                        } 
+                                        } */
+                                       if ((col >= 11) && (row == 11))
+                                        {
+                                           /* cellValue = codes[1];
+                                            rowData.Add(cellValue);
+                                            /* rowData.Add(codes[(row - 10)]);
+                                            foreach (var item in codes)
+                                            {
+                                                rowData.Add(item);
+                                            } */
+                                           for (int col2 = 0; col2 <= codes.Count - 1; col2++)
+                                            {
+                                                rowData.Add((string)codes[col2]);
+                                            }
+                                        }
+
                                     }
 
                                     data.Add(rowData);
+                                   
                                 }
                                 //  ViewBag.Data = data;
-                                 // ViewBag.CodeData = codeData;
-                                 // return View();
-                                  return View(data); 
+                                // ViewBag.CodeData = codeData;
+                                // return View();
+                                Log.Information("ReadExcel {filePath}", filePath);
+                                return View(data); 
                                 //  Console.WriteLine(codeData[0] + " 121212121212121212121212121121212");
                                // Debug.WriteLine(codeData[0] + " 121212121212121212121212121121212");
                                // var tupleModel = new Tuple<List<List<string>>, List<string>>(data, codeData);
@@ -397,6 +428,7 @@ namespace RefRecipe.Controllers
                                 //  ViewBag.Data = data;
                                 // ViewBag.CodeData = codeData;
                                 // return View();
+                                Log.Information("ReadExcel2 {filePath}", filePath);
                                 return View(data);
                                 //  Console.WriteLine(codeData[0] + " 121212121212121212121212121121212");
                                 // Debug.WriteLine(codeData[0] + " 121212121212121212121212121121212");

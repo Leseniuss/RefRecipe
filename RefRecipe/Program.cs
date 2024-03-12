@@ -4,6 +4,8 @@ using RefRecipe.Data;
 using RefRecipe.Models;
 using OfficeOpenXml;
 using Glimpse.AspNet.Tab;
+using Serilog;
+using Serilog.Events;
 
 
 
@@ -20,6 +22,17 @@ builder.Services.AddDbContext<RefRecipeContext>(options =>
 
 
 var app = builder.Build();
+
+Log.Logger = new LoggerConfiguration()
+            //.MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("C:\\reseptit\\Log\\Logger.txt", rollingInterval: RollingInterval.Day)
+            // Ota käyttöön Warning-tason logit
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            // Ota käyttöön Information-tason logit
+            .MinimumLevel.Override("System", LogEventLevel.Information)
+            .CreateLogger();
+Log.Information("Program Start");
 
 // seed the db
 using (var scope = app.Services.CreateScope())

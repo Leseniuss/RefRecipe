@@ -7,6 +7,9 @@ using System.Linq;
 using Microsoft.Data.Sqlite;
 using System.Data.SQLite;
 using System.Data;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using Serilog;
 
 namespace RefRecipe.Controllers
 {
@@ -101,9 +104,7 @@ namespace RefRecipe.Controllers
             return View(material);
         }
 
-        // POST: Recipes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Material material, string password)
@@ -117,6 +118,7 @@ namespace RefRecipe.Controllers
             {
                 _context.Add(material);
                 await _context.SaveChangesAsync();
+                Log.Information("Material Created");
                 return RedirectToAction("Index", "Materials");
             }
             else
@@ -142,6 +144,7 @@ namespace RefRecipe.Controllers
                 _context.Update(material);
                 await _context.SaveChangesAsync();
                 // return View(recipe);
+                Log.Information("Material Edited");
                 return RedirectToAction("Index", "Materials");
             }
             else
@@ -153,8 +156,7 @@ namespace RefRecipe.Controllers
             }
 
         }
-        // POST: Recipes/Delete/5
-        // [HttpPost, ActionName("Delete")]
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, Material material, string password)
@@ -171,6 +173,7 @@ namespace RefRecipe.Controllers
                // _context.Materials.Remove(material);
                _context.Remove(material);
                 await _context.SaveChangesAsync();
+                Log.Information("Material Deleted");
                 return RedirectToAction("Index", "Materials");
             }
             else
@@ -183,6 +186,340 @@ namespace RefRecipe.Controllers
            // await _context.SaveChangesAsync();
             // return RedirectToAction(nameof(Index));
            // return RedirectToAction("Index", "Materials");
+        }
+
+       
+
+       /* public ActionResult RecipeMaterials2COLL(string id)
+        {
+            string databasePath = "Recipes.db";
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + databasePath))
+                {
+                    connection.Open();
+
+                    // string baseFolderPath = @"c:\reseptit\";
+                    //  string query = "SELECT FilePath FROM Recipes WHERE Koodi = @id";
+                    string query = "SELECT Koodi FROM Recipes WHERE Koodi = @id";
+                    // string query3 = @"C:\reseptit\";
+                    // string query4 = ".xlsx";
+                    //string query22 = query3 + query2 + query4;
+                    Debug.WriteLine(query + " 44444444444444444444444444444444444");
+                    // C:\reseptit\SELECT Koodi FROM Recipes WHERE Koodi = @id.xlsx 44444444444444444444444444444444444
+
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.Add(new SQLiteParameter("@id", DbType.String) { Value = id });
+                        string filePath = (string)command.ExecuteScalar();
+
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+                            Debug.WriteLine(filePath + " 6666666666666666666666666666666666666666666666666");
+                            string eka = @"C:\reseptit\";
+                            string toka = ".xlsx";
+                            string filePath2 = eka + filePath + toka;
+
+
+                            using (var package = new ExcelPackage(new FileInfo(filePath2)))
+                            {
+                                var worksheet = package.Workbook.Worksheets[0];
+
+                                int rowCount = 18;
+                                int colCount = 2;
+
+                                List<List<string>> data = new List<List<string>>();
+                                List<string> codeData = new List<string>();
+
+                                for (int row = 1; row <= rowCount; row++)
+                                {
+                                    List<string> rowData = new List<string>();
+                                    // List<string> codeData = new List<string>();
+
+                                    for (int col = 1; col <= colCount; col++)
+                                    {
+                                        var cellValue = worksheet.Cells[row, col].Value?.ToString();
+
+                                        if (row >= 9)
+                                        {
+                                            // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                            rowData.Add(cellValue);
+                                        }
+                                        if (row <= 3)
+                                        {
+                                            // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                            rowData.Add(cellValue);
+                                        }
+                                       
+
+                                    }
+
+                                    data.Add(rowData);
+                                }
+                                //  ViewBag.Data = data;
+                                // ViewBag.CodeData = codeData;
+                                // return View();
+                                return View(data);
+                                //  Console.WriteLine(codeData[0] + " 121212121212121212121212121121212");
+                                // Debug.WriteLine(codeData[0] + " 121212121212121212121212121121212");
+                                // var tupleModel = new Tuple<List<List<string>>, List<string>>(data, codeData);
+
+                                // return View(tupleModel);
+
+                            }
+
+                        }
+                        else
+                        {
+                            // Tässä reseptiä ei löydy, asetetaan viesti ViewBagiin
+                            ViewBag.ErrorMessage = "Reseptiä ei löydy.";
+                            return View();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Virhe: {ex.Message}");
+                // Voit tehdä tässä jotain virhetilanteessa, esimerkiksi näyttää virhesivun
+                // return View("Error");
+                ViewBag.ErrorMessage = "Reseptiä ei löydy.";
+                return RedirectToAction("AuthIndex", "Home");
+            }
+
+            
+        } */
+
+        public ActionResult RecipeMaterials(string id)
+        {
+            string databasePath = "Recipes.db";
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + databasePath))
+                {
+                    connection.Open();
+
+                    // string baseFolderPath = @"c:\reseptit\";
+                    //  string query = "SELECT FilePath FROM Recipes WHERE Koodi = @id";
+                    string query = "SELECT Koodi FROM Recipes WHERE Koodi = @id";
+                    // string query3 = @"C:\reseptit\";
+                    // string query4 = ".xlsx";
+                    //string query22 = query3 + query2 + query4;
+                    Debug.WriteLine(query + " 44444444444444444444444444444444444");
+                    // C:\reseptit\SELECT Koodi FROM Recipes WHERE Koodi = @id.xlsx 44444444444444444444444444444444444
+
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.Add(new SQLiteParameter("@id", DbType.String) { Value = id });
+                        string filePath = (string)command.ExecuteScalar();
+
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+                            Debug.WriteLine(filePath + " 6666666666666666666666666666666666666666666666666");
+                            string eka = @"C:\reseptit\";
+                            string toka = ".xlsx";
+                            string filePath2 = eka + filePath + toka;
+
+
+                            using (var package = new ExcelPackage(new FileInfo(filePath2)))
+                            {
+                                var worksheet = package.Workbook.Worksheets[0];
+
+                                int rowCount = 20;
+                                int colCount = 9;
+
+                                List<List<string>> data = new List<List<string>>();
+                                List<string> codeData = new List<string>();
+
+                                for (int row = 1; row <= rowCount; row++)
+                                {
+                                    List<string> rowData = new List<string>();
+                                    // List<string> codeData = new List<string>();
+
+                                    for (int col = 1; col <= colCount; col++)
+                                    {
+                                        var cellValue = worksheet.Cells[row, col].Value?.ToString();
+
+                                        if ((col == 1) && (row >= 11))
+                                        {
+                                        // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                            rowData.Add(cellValue);
+                                        }
+                                        else if ((col == 1) && (row <= 3 || row == 10))
+                                        {
+                                            rowData.Add(cellValue);
+                                        }
+                                        else if ((col == 2) && (row >= 11 || row <= 3 || row == 10))
+                                        {
+                                            // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                            rowData.Add(cellValue);
+                                        }
+
+                                       /* else if ((col == 9) && (row >= 10))
+                                        {
+                                            rowData.Add(cellValue);
+                                        } */
+                                        /* if (row <= 3)
+                                         {
+                                             // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                             rowData.Add(cellValue);
+                                         }
+                                         if (row == 10)
+                                         {
+                                             // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                             rowData.Add(cellValue);
+                                         }
+                                         /* if (col == 1 && rowCount >= 11 && rowCount <= 20)
+                                          {
+                                              codeData.Add(cellValue);
+
+                                          } */
+                                    }
+
+                                    data.Add(rowData);
+                                }
+                                //  ViewBag.Data = data;
+                                // ViewBag.CodeData = codeData;
+                                // return View();
+                                return View(data);
+                                //  Console.WriteLine(codeData[0] + " 121212121212121212121212121121212");
+                                // Debug.WriteLine(codeData[0] + " 121212121212121212121212121121212");
+                                // var tupleModel = new Tuple<List<List<string>>, List<string>>(data, codeData);
+
+                                // return View(tupleModel);
+
+                            }
+
+                        }
+                        else
+                        {
+                            // Tässä reseptiä ei löydy, asetetaan viesti ViewBagiin
+                            ViewBag.ErrorMessage = "Reseptiä ei löydy.";
+                            return View();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Virhe: {ex.Message}");
+                // Voit tehdä tässä jotain virhetilanteessa, esimerkiksi näyttää virhesivun
+                // return View("Error");
+                ViewBag.ErrorMessage = "Reseptiä ei löydy.";
+                return RedirectToAction("AuthIndex", "Home");
+            }
+
+
+        }
+
+        public ActionResult RecipeMaterialsAlkuperäinen(string id)
+        {
+            string databasePath = "Recipes.db";
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + databasePath))
+                {
+                    connection.Open();
+
+                    // string baseFolderPath = @"c:\reseptit\";
+                    //  string query = "SELECT FilePath FROM Recipes WHERE Koodi = @id";
+                    string query = "SELECT Koodi FROM Recipes WHERE Koodi = @id";
+                    // string query3 = @"C:\reseptit\";
+                    // string query4 = ".xlsx";
+                    //string query22 = query3 + query2 + query4;
+                    Debug.WriteLine(query + " 44444444444444444444444444444444444");
+                    // C:\reseptit\SELECT Koodi FROM Recipes WHERE Koodi = @id.xlsx 44444444444444444444444444444444444
+
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.Add(new SQLiteParameter("@id", DbType.String) { Value = id });
+                        string filePath = (string)command.ExecuteScalar();
+
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+                            Debug.WriteLine(filePath + " 6666666666666666666666666666666666666666666666666");
+                            string eka = @"C:\reseptit\";
+                            string toka = ".xlsx";
+                            string filePath2 = eka + filePath + toka;
+
+
+                            using (var package = new ExcelPackage(new FileInfo(filePath2)))
+                            {
+                                var worksheet = package.Workbook.Worksheets[0];
+
+                                int rowCount = worksheet.Dimension.Rows - 8;
+                                int colCount = 10;
+
+                                List<List<string>> data = new List<List<string>>();
+                                List<string> codeData = new List<string>();
+
+                                for (int row = 1; row <= rowCount; row++)
+                                {
+                                    List<string> rowData = new List<string>();
+                                    // List<string> codeData = new List<string>();
+
+                                    for (int col = 1; col <= colCount; col++)
+                                    {
+                                        var cellValue = worksheet.Cells[row, col].Value?.ToString();
+
+                                        if (col != 4 && col != 5 && col != 6 && col != 7)
+                                        {
+                                            // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                            rowData.Add(cellValue);
+                                        }
+                                        if (col == 1 && rowCount >= 11 && rowCount <= 20)
+                                        {
+                                            codeData.Add(cellValue);
+
+                                        }
+                                    }
+
+                                    data.Add(rowData);
+                                }
+                                //  ViewBag.Data = data;
+                                // ViewBag.CodeData = codeData;
+                                // return View();
+                                return View(data);
+                                //  Console.WriteLine(codeData[0] + " 121212121212121212121212121121212");
+                                // Debug.WriteLine(codeData[0] + " 121212121212121212121212121121212");
+                                // var tupleModel = new Tuple<List<List<string>>, List<string>>(data, codeData);
+
+                                // return View(tupleModel);
+
+                            }
+
+                        }
+                        else
+                        {
+                            // Tässä reseptiä ei löydy, asetetaan viesti ViewBagiin
+                            ViewBag.ErrorMessage = "Reseptiä ei löydy.";
+                            return View();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Virhe: {ex.Message}");
+                // Voit tehdä tässä jotain virhetilanteessa, esimerkiksi näyttää virhesivun
+                // return View("Error");
+                ViewBag.ErrorMessage = "Reseptiä ei löydy.";
+                return RedirectToAction("AuthIndex", "Home");
+            }
+
+
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
