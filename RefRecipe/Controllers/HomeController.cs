@@ -271,7 +271,7 @@ namespace RefRecipe.Controllers
                                 var worksheet = package.Workbook.Worksheets[0];
 
                                 int rowCount = worksheet.Dimension.Rows - 8;
-                                int colCount = 11;
+                                int colCount = 10;
 
                                 List<List<string>> data = new List<List<string>>();
                                 List<string> codeData = new List<string>();
@@ -280,7 +280,8 @@ namespace RefRecipe.Controllers
                                 for (int row = 1; row <= rowCount; row++)
                                 {
                                     List<string> rowData = new List<string>();
-                                   // List<string> codeData = new List<string>();
+                                    // List<string> codeData = new List<string>();
+                                    var rowmi = row - 11;
                                    
 
                                     for (int col = 1; col <= colCount; col++)
@@ -298,25 +299,8 @@ namespace RefRecipe.Controllers
                                         {
                                             codes.Add(cellValue);
                                         }
-                                       /* if (col == 1 && rowCount >= 11 && rowCount <= 20)
-                                        {
-                                            codeData.Add(cellValue);
-
-                                        } */
-                                       if ((col >= 11) && (row == 11))
-                                        {
-                                           /* cellValue = codes[1];
-                                            rowData.Add(cellValue);
-                                            /* rowData.Add(codes[(row - 10)]);
-                                            foreach (var item in codes)
-                                            {
-                                                rowData.Add(item);
-                                            } */
-                                           for (int col2 = 0; col2 <= codes.Count - 1; col2++)
-                                            {
-                                                rowData.Add((string)codes[col2]);
-                                            }
-                                        }
+                                      
+                                      
 
                                     }
 
@@ -448,20 +432,19 @@ namespace RefRecipe.Controllers
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine($"Virhe: {ex.Message}");
-                // Voit tehdä tässä jotain virhetilanteessa, esimerkiksi näyttää virhesivun
+               
                 // return View("Error");
                 ViewBag.ErrorMessage = "Reseptiä ei löydy.";
-                 return RedirectToAction("AuthIndex2", "Home");
+                return RedirectToAction("AuthIndex2", "Home");
                // return View();
             }
 
-            // Jos ei tapahtunut virhettä, palaa tyhjällä datalla
-            // return View(new List<List<string>>());
+           
         }
 
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
