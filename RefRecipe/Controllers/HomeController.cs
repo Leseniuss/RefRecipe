@@ -260,7 +260,7 @@ namespace RefRecipe.Controllers
 
                         if (!string.IsNullOrEmpty(filePath))
                         {
-                            Debug.WriteLine(filePath + " 6666666666666666666666666666666666666666666666666");
+                           
                             string eka = @"C:\reseptit\";
                             string toka = ".xlsx";
                             string filePath2 = eka + filePath + toka;
@@ -379,7 +379,7 @@ namespace RefRecipe.Controllers
 
                         if (!string.IsNullOrEmpty(filePath))
                         {
-                            Debug.WriteLine(filePath + " 6666666666666666666666666666666666666666666666666");
+                           
                             string eka = @"C:\reseptit\";
                             string toka = ".xlsx";
                             string filePath2 = eka + filePath + toka;
@@ -394,11 +394,13 @@ namespace RefRecipe.Controllers
 
                                 List<List<string>> data = new List<List<string>>();
                                 List<string> codeData = new List<string>();
+                                List<string> codes = new List<string>();
 
                                 for (int row = 1; row <= rowCount; row++)
                                 {
                                     List<string> rowData = new List<string>();
                                     // List<string> codeData = new List<string>();
+                                    var rowmi = row - 11;
 
                                     for (int col = 1; col <= colCount; col++)
                                     {
@@ -406,14 +408,27 @@ namespace RefRecipe.Controllers
 
                                         if (col != 4 && col != 5 && col != 6 && col != 7)
                                         {
-                                            // rowData.Add(worksheet.Cells[row, col].Value?.ToString() ?? string.Empty);
+                                            
                                             rowData.Add(cellValue);
                                         }
-                                        if (col == 1 && rowCount >= 11 && rowCount <= 20)
+                                        if (col == 1 && row >= 11 && row <= 20)
                                         {
-                                            codeData.Add(cellValue);
+                                            codes.Add(cellValue);
 
                                         }
+                                        if ((col == 10) && row >= 11 && row <= 20)
+                                        {
+                                            // rowData.Add(codes[rowmi]);
+                                            string locationQuery = "SELECT Location FROM Materials WHERE SapCode = @id";
+                                            using (SQLiteCommand locationCommand = new SQLiteCommand(locationQuery, connection))
+                                            {
+                                                locationCommand.Parameters.Add(new SQLiteParameter("@id", DbType.String) { Value = codes[rowmi] });
+                                                string location = (string)locationCommand.ExecuteScalar();
+                                                rowData.Add(location);
+                                            }
+                                        }
+
+
                                     }
 
                                     data.Add(rowData);
