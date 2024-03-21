@@ -299,8 +299,20 @@ namespace RefRecipe.Controllers
                                         {
                                             codes.Add(cellValue);
                                         }
-                                      
-                                      
+                                        if ((col == 10) && row >= 11 && row <= 20)
+                                        {
+                                            // rowData.Add(codes[rowmi]);
+                                            string locationQuery = "SELECT Location FROM Materials WHERE SapCode = @id";
+                                            using (SQLiteCommand locationCommand = new SQLiteCommand(locationQuery, connection))
+                                            {
+                                                locationCommand.Parameters.Add(new SQLiteParameter("@id", DbType.String) { Value = codes[rowmi] });
+                                                string location = (string)locationCommand.ExecuteScalar();
+                                                rowData.Add(location);
+                                            }
+                                        }
+
+
+
 
                                     }
 
@@ -332,15 +344,12 @@ namespace RefRecipe.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Virhe: {ex.Message}");
-                // Voit tehdä tässä jotain virhetilanteessa, esimerkiksi näyttää virhesivun
-                // return View("Error");
-                ViewBag.ErrorMessage = "Reseptiä ei löydy.";
-                return RedirectToAction("AuthIndex", "Home");
+                string errorMessage = "Reseptiä ei löydy. Sulje tämä välilehti. ";
+                return Content(errorMessage);
+               // return RedirectToAction("AuthIndex", "Home");
             }
 
-            // Jos ei tapahtunut virhettä, palaa tyhjällä datalla
-            // return View(new List<List<string>>());
+          
         }
 
         public ActionResult ReadExcel2(string id)
@@ -432,12 +441,12 @@ namespace RefRecipe.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-               
-                // return View("Error");
-                ViewBag.ErrorMessage = "Reseptiä ei löydy.";
-                return RedirectToAction("AuthIndex2", "Home");
+                string errorMessage = "Reseptiä ei löydy. Sulje tämä välilehti. ";
+                return Content(errorMessage);
+               // ViewBag.ErrorMessage = "Reseptiä ei löydy.";
+               // return RedirectToAction("AuthIndex2", "Home");
                // return View();
             }
 

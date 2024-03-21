@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
+﻿using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
-using RefRecipe.Models;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System;
-using System.Collections.Generic;
-
-
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
+using Microsoft.Extensions.Hosting.Internal;
+using PuppeteerSharp;
 
 
 
@@ -16,28 +11,60 @@ namespace RefRecipe.Controllers
 {
     public class CardController : Controller
     {
-       /* public IActionResult Index()
+        public async Task<IActionResult> TakeScreenshot()
         {
-            string filePath = @"C:\reseptit\Mehukortti.xlsx";
-            ExcelReader excelReader = new ExcelReader();
-            List<List<string>> excelData = excelReader.ReadExcel(filePath);
-            return View(excelData);
-        } */
+            try
+            {
+                var puppeteerExecutableRevision = "123.0.6312.59"; // Puppeteerin käytettävä versio
 
-        /* public IActionResult Index()
-         {
-             string filePath = @"C:\Path\To\Your\Excel\File.xlsx";
-             ExcelReader excelReader = new ExcelReader();
-             var excelData = excelReader.ReadExcel(filePath);
-             return View(excelData);
-         } */
+               
+                var browserFetcherOptions = new BrowserFetcherOptions { Path = "puppeteer" };
+                var browserFetcher = new BrowserFetcher(browserFetcherOptions);
+                await browserFetcher.DownloadAsync(puppeteerExecutableRevision);
 
-         public ActionResult Index()
+                var launchOptions = new LaunchOptions { Headless = true }; 
+                using (var browser = await Puppeteer.LaunchAsync(launchOptions))
+                using (var page = await browser.NewPageAsync())
+                {
+                   
+                    await page.GoToAsync("https://www.google.com");
+
+                  
+                    var screenshotPath = Path.Combine(Directory.GetCurrentDirectory(), "screenshot.png");
+                    await page.ScreenshotAsync(screenshotPath);
+
+                   
+                    return Content($"Screenshot saved: {screenshotPath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content($"Error: {ex.Message}");
+            }
+        }
+
+        public IActionResult Index2()
+        {
+            try
+            {
+                string filePath = @"C:\reseptit\Kortit\Mehukortti22.xlsx"; 
+                ExcelReader excelReader = new ExcelReader();
+                List<List<string>> excelData = excelReader.ReadExcel(filePath, 20);
+                return View(excelData);
+            }
+            catch (Exception ex)
+            {
+               
+                return View("Error", ex.Message);
+            }
+        }
+
+        public ActionResult Index()
          {
              try
              {
                  // Excel-tiedoston polku
-                 string filePath = @"c:\reseptit\Mehukortti.xlsx";
+                 string filePath = @"c:\reseptit\Kortit\Mehukortti.xlsx";
 
 
                  if (!string.IsNullOrEmpty(filePath))
@@ -46,7 +73,7 @@ namespace RefRecipe.Controllers
                      using (var package = new ExcelPackage(new FileInfo(filePath)))
                      {
                          // ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-                         var worksheet = package.Workbook.Worksheets[0];
+                         var worksheet = package.Workbook.Worksheets[2];
                          int rowCount = 28;
                          int colCount = 19;
 
@@ -99,7 +126,7 @@ namespace RefRecipe.Controllers
              }
          } 
 
-        /* public ActionResult Index()
+        /* public ActionResult Index2()
          {
              try
              {

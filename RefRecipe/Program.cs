@@ -5,6 +5,7 @@ using RefRecipe.Models;
 using OfficeOpenXml;
 using Serilog;
 using Serilog.Events;
+using RefRecipe;
 
 
 
@@ -17,7 +18,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<RefRecipeContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("RefRecipeContext")));
 
-
+// Add ExcelReader service
+builder.Services.AddScoped<ExcelReader>();
 
 
 var app = builder.Build();
