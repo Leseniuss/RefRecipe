@@ -139,19 +139,7 @@ namespace RefRecipe.Controllers
         // GET: Recipes/Delete/5
          public async Task<IActionResult> Delete(int? id)
          {
-            /* if (id == null || _context.Recipes == null)
-             {
-                 return NotFound();
-             }
-
-             var recipe = await _context.Recipes
-                 .FirstOrDefaultAsync(m => m.Koodi = id);
-             if (recipe == null)
-             {
-                 return NotFound();
-             }
-
-             return View(recipe); */
+           
 
             if (id == null || _context.Recipes == null)
             {

@@ -29,16 +29,58 @@
         height: 120%;
         background-image: url('refrescologo.png'); 
         background-repeat: no-repeat;
-        background-size: cover; 
+        background-size: cover;
+    }
+    .checkbox {
+        width: 30px; /* Määritä leveys */
+        height: 30px; /* Määritä korkeus */
+    
     }
 
 </style>
 
+<script>
+    function handleCheckboxChange(checkbox) {
+        var submitButton = document.getElementById("submitButton");
+        if (checkbox.checked) {
+            // Checkbox on valittu, vaihda napin teksti ja väri
+            submitButton.innerHTML = "All Materials Added.. Click ME";
+            submitButton.classList.remove("btn-primary");
+            submitButton.classList.add("btn-success");
+        } else {
+            // Checkbox ei ole valittu, palauta alkuperäinen teksti ja väri
+            submitButton.innerHTML = "Checkbox When Materials Added";
+            submitButton.classList.remove("btn-success");
+            submitButton.classList.add("btn-primary");
+        }
+    }
 
+    function submitForm() {
+        var password = document.getElementById("password").value;
+        // Tee jotain lomakkeen lähettämiseen liittyvää
+    }
+</script>
 
-<div class="col-4 p-0 justify-content-end">
-    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Home/AuthIndex">Back To List</a>
+<div class="row">
+    <div class="col-6">
+        <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Home/AuthIndex">Back To List</a>
+    </div>
+    <div class="col-4 text-center">
+        <form method="post" asp-controller="Produced" asp-action="Create">
+           
+            <input type="checkbox" id="myCheckbox" class="checkbox" onchange="handleCheckboxChange(this)" />
+            <button type="submit" class="btn btn-primary" id="submitButton">Checkbox when all Components Added </button>
+            <!-- <button type="submit" class="btn btn-primary" id="submitButton">Checkbox When Materials Added</button> -->
+ 
+    </form>
+    </div>
+    <a asp-controller="Produced" asp-action="Create" asp-route-id="43">TESTII ÄLÄ KÄYTÄ . TAI NO TOIMII TÄMÄKIN</a>
+    
 </div>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="text-danger">@ViewBag.ErrorMessage</div>
+}
 
 
 <table class="ExcelTable">

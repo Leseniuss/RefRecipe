@@ -233,6 +233,8 @@ namespace RefRecipe.Controllers
              // return View(new List<List<string>>());
           } */
 
+        string filePathsave = "Ei tietoa";
+
         public ActionResult ReadExcel(string id)
         {
             string databasePath = "Recipes.db";
@@ -322,6 +324,10 @@ namespace RefRecipe.Controllers
                                 //  ViewBag.Data = data;
                                 // ViewBag.CodeData = codeData;
                                 // return View();
+                                // HttpContext.Session.SetString("filePathsave2", filePath);
+                                TempData["filePathsave2"] = filePath;
+                                filePathsave = filePath;
+                                Log.Information(filePathsave);
                                 Log.Information("ReadExcel {filePath}", filePath);
                                 return View(data); 
                                 //  Console.WriteLine(codeData[0] + " 121212121212121212121212121121212");
@@ -436,6 +442,11 @@ namespace RefRecipe.Controllers
                                 //  ViewBag.Data = data;
                                 // ViewBag.CodeData = codeData;
                                 // return View();
+                                // HttpContext.Session.SetString("filePathsave2", filePath);
+                                TempData["filePathsave2"] = filePath;
+                                filePathsave = filePath;
+                                Log.Information(filePathsave);
+                               
                                 Log.Information("ReadExcel2 {filePath}", filePath);
                                 return View(data);
                                 //  Console.WriteLine(codeData[0] + " 121212121212121212121212121121212");
@@ -468,7 +479,27 @@ namespace RefRecipe.Controllers
            
         }
 
-        
+       /* [HttpPost]
+        public IActionResult SubmitForm(bool myCheckbox)
+        {
+            if (myCheckbox)
+            {
+                // Tee jotain, kun checkbox on valittu
+                Debug.WriteLine(filePathsave + " FFFIIIILLELELELELPAPAPPAPATHTHTH");
+                return RedirectToAction("AuthIndex", "Home");
+            }
+            else
+            {
+                // Tee jotain, kun checkbox ei ole valittu
+                Debug.WriteLine(filePathsave + " FFFIIIILLELELELELPAPAPPAPATHTHTH");
+                return RedirectToAction("AuthIndex2", "Home");
+               
+            }
+
+            // Palaa johonkin näkymään tai tee muu tarvittava toimenpide
+        } */
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
