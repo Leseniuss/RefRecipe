@@ -3,7 +3,28 @@
 @{
     ViewData["Title"] = "Index";
     var produceList = Model.ToList();
+    
+    var productList = produceList.Count;
+    var volume2 = TempData["volume"];
+
+   
+
 }
+
+<center>
+    <div class="col-4 p-0 d-flex justify-content-start align-items-center" style="font-size: 24px;">
+        <form asp-controller="Produced" asp-action="Index" class="d-flex">
+            <span style="color: green; font-weight: bold;"> Start Date :</span>
+            <input type="date" name="startdate" style="margin-right: 10px;" />
+            <span style="color: green; font-weight: bold;"> End Date :</span>
+            <input type="date" name="enddate" style="margin-right: 10px;" />
+            <input type="submit" value="Get List" style="color: yellow; font-weight: bold;" />
+        </form>
+    </div>
+</center>
+
+<h3 class="text-left" style="color: blue; font-weight: bold;">Products Made: @productList</h3>
+<h3 class="text-left" style="color: blue; font-weight: bold;">Total Volume In Litres: @volume2</h3>
 
 <style>
 
@@ -41,11 +62,6 @@
     <table class="hometable">
         <thead>
             <tr>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Id)
-                </th>
-
                 <th>
                     @Html.DisplayNameFor(model => model.SapCode)
                 </th>
@@ -67,14 +83,10 @@
             {
                 <tr style="background-color: @(produceList.IndexOf(item) % 2 == 0 ? "lightgreen" : "orange")">
 
-                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
-
                     <td>@Html.DisplayFor(modelItem => item.SapCode)</td>
                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Timestamp)</td>
+                    <td>@DateTimeOffset.FromUnixTimeSeconds(item.Timestamp).LocalDateTime.ToString("dd-MM-yyyy HH:mm:ss")</td>
 
-
-                    
 
                 </tr>
             }

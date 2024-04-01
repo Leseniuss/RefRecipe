@@ -30,7 +30,10 @@ namespace RefRecipe.Data
         [Required(ErrorMessage = "Nimi on pakollinen.")]
         public string? Nimi { get; set; }
 
-       
+        [Required(ErrorMessage = "Satsikoko on pakollinen.")]
+        public int Satsikoko { get; set; }
+
+
 
     }
 }

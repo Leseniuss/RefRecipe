@@ -2,13 +2,17 @@
     ViewBag.Title = "Home Page";
 }
 
-@if (ViewBag.ErrorMessage != null)
-{
-    <div>@ViewBag.ErrorMessage</div>
-}
-
-<form method="post" action="@Url.Action("Index", "Home")">
-    <label for="password">Salasana:</label>
-    <input type="password" id="password" name="password" />
-    <input type="submit" value="Kirjaudu" />
-</form>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh; font-size: 24px;">
+    <div style="margin-bottom: 60vh;">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div style="color: red; font-weight: bold;">@ViewBag.ErrorMessage</div>
+        }
+  
+        <form method="post" action="@Url.Action("Index", "Home")">
+            <label for="password" style="color: green; font-weight: bold;">Salasana:</label>
+            <input type="password" id="password" name="password" />
+            <input type="submit" value="Kirjaudu" style="color: green; font-weight: bold;"  />
+        </form>
+    </div>
+</div>

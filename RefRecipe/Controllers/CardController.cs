@@ -11,6 +11,118 @@ namespace RefRecipe.Controllers
 {
     public class CardController : Controller
     {
+        public ActionResult ReadIndex()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LoadDataFromExcel(IFormFile excelFile)
+        {
+            try
+            {
+                if (excelFile != null && excelFile.Length > 0)
+                {
+                    using (var stream = excelFile.OpenReadStream())
+                    using (var package = new ExcelPackage(stream))
+                    {
+                        var worksheet = package.Workbook.Worksheets[0];
+                        int rowCount = 28;
+                        int colCount = 19;
+                        List<List<string>> excelData = new List<List<string>>();
+
+                        for (int row = 1; row <= rowCount; row++)
+                        {
+                            List<string> rowData = new List<string>();
+
+                            for (int col = 1; col <= colCount; col++)
+                            {
+                                var cellValue = worksheet.Cells[row, col].Value;
+                                if (cellValue != null)
+                                {
+                                    rowData.Add(cellValue.ToString());
+                                }
+                                else
+                                {
+                                    rowData.Add(string.Empty);
+                                }
+                            }
+
+                            excelData.Add(rowData);
+                        }
+
+                        
+                        return View("ReadIndex", excelData);
+                    }
+                }
+                else
+                {
+                   
+                    return View("ReadIndex");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Käsittele virheellinen tilanne
+                Console.WriteLine($"Virhe: {ex.Message}");
+                return RedirectToAction("AuthIndex", "Home");
+            }
+        }
+
+        /* [HttpPost]
+         public ActionResult LoadDataFromExcel(IFormFile excelFile)
+         {
+             try
+             {
+                 if (excelFile != null && excelFile.Length > 0)
+                 {
+                     using (var stream = excelFile.OpenReadStream())
+                     using (var package = new ExcelPackage(stream))
+                     {
+                         var worksheet = package.Workbook.Worksheets[0];
+                         int rowCount = 28;
+                         int colCount = 19;
+                         List<List<string>> excelData = new List<List<string>>();
+
+                         for (int row = 1; row <= rowCount; row++)
+                         {
+                             List<string> rowData = new List<string>();
+
+                             for (int col = 1; col <= colCount; col++)
+                             {
+                                 var cellValue = worksheet.Cells[row, col].Value;
+                                 if (cellValue != null)
+                                 {
+                                     rowData.Add(cellValue.ToString());
+                                 }
+                                 else
+                                 {
+                                     rowData.Add(string.Empty);
+                                 }
+                             }
+
+                             excelData.Add(rowData);
+                         }
+
+                         return PartialView("_ExcelData", excelData);
+                     }
+                 }
+                 else
+                 {
+                     // Käsittele tilanne, jossa tiedostoa ei ole valittu
+                     // Esim. palauta käyttäjä takaisin lomakkeelle virheviestin kera
+                     return View("ReadIndex");
+                 }
+             }
+             catch (Exception ex)
+             {
+                 // Käsittele virheellinen tilanne
+                 Console.WriteLine($"Virhe: {ex.Message}");
+                 return RedirectToAction("AuthIndex", "Home");
+             }
+         } */
+
+
         public async Task<IActionResult> TakeScreenshot()
         {
             try
@@ -59,7 +171,12 @@ namespace RefRecipe.Controllers
             }
         }
 
-        public ActionResult Index()
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult ReadIndex2()
          {
              try
              {

@@ -1,0 +1,9 @@
+﻿<form method="post" enctype="multipart/form-data" action="@Url.Action("LoadDataFromExcel", "Card")">
+    <div>
+        <label for="fileInput">Valitse Excel-tiedosto:</label>
+        <input type="file" id="fileInput" name="excelFile" accept=".xlsx, .xls">
+    </div>
+    <div>
+        <button type="submit">Lataa tiedot Excelistä</button>
+    </div>
+</form>
