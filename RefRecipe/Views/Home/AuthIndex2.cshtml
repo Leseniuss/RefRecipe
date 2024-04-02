@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Index";
     var recipeList = Model.ToList();
+    ViewBag.Color11 = ViewBag.recipeColor1 ?? "lightgreen";
+    ViewBag.Color22 = ViewBag.recipeColor2 ?? "orange";
 }
 
 <h1 style="color: green;">Welcome to the Recipe database for Refresco Finland OY</h1>
@@ -75,16 +77,16 @@
 
         @foreach (var item in Model)
         {
-            <tr style="background-color: @(recipeList.IndexOf(item) % 2 == 0 ? "lightgreen" : "orange")">
-                
-                <td>@Html.DisplayFor(modelItem => item.Koodi)</td>
+            <tr style="background-color: @(recipeList.IndexOf(item) % 2 == 0 ? ViewBag.Color11 : ViewBag.Color22)">
 
-                <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
+                <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Koodi)</td>
+
+                <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Nimi)</td>
                
 
                 <td>
-                    
-                    <a asp-controller="Home" asp-action="ReadExcel2" asp-route-id="@item.Koodi" target="_blank">Recipe</a>
+
+                    <a asp-controller="Home" asp-action="ReadExcel2" asp-route-id="@item.Koodi" target="_blank" style="font-weight: bold;">Recipe</a>
                     
                 </td>
 

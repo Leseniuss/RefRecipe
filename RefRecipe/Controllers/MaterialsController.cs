@@ -27,9 +27,15 @@ namespace RefRecipe.Controllers
        // public IList<Recipe> Recipe { get; set; } = default!;
         public IActionResult Index(string SearchText2 = "", string SearchCode2 = "")
         {
+            
+            string materialColor1 = "materialColor1";
+			string materialColor2 = "materialColor2";
+			var colorEntity = _context.Colors.FirstOrDefault(p => p.MaterialColor == materialColor1)?.Colorname;
+			var colorEntity2 = _context.Colors.FirstOrDefault(p => p.MaterialColor == materialColor2)?.Colorname;
+			ViewBag.materialColor1 = colorEntity;
+			ViewBag.materialColor2 = colorEntity2;
 
-            // List<Recipe> recipes;
-            List<Material> materials;
+			List<Material> materials;
             if (SearchText2 != "" && SearchText2 != null)
             {
 

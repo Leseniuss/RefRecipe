@@ -17,5 +17,6 @@ namespace RefRecipe.Data
         public DbSet<Material> Materials { get; set; } = default!;
         public DbSet<Password> Passwords { get; set; } = default!;
         public DbSet<Produce> Produced { get; set; } = default!;
-    }
+		public DbSet<Color> Colors { get; set; } = default!;
+	}
 }

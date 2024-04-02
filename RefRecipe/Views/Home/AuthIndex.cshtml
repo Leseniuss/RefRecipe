@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Index";
     var recipeList = Model.ToList();
+
+    ViewBag.Color11 = ViewBag.recipeColor1 ?? "lightgreen";
+    ViewBag.Color22 = ViewBag.recipeColor2 ?? "orange";
 }
 
 <h1 style="color: green;">Welcome to the Recipe database for Refresco Finland OY</h1>
@@ -84,19 +87,19 @@
 
         @foreach (var item in Model)
         {
-                <tr style="background-color: @(recipeList.IndexOf(item) % 2 == 0 ? "lightgreen" : "orange")">
+                <tr style="background-color: @(recipeList.IndexOf(item) % 2 == 0 ? ViewBag.Color11 : ViewBag.Color22)">
                 
-                <td>@Html.DisplayFor(modelItem => item.Koodi)</td>
+                    <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Koodi)</td>
 
-                <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
+                    <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Nimi)</td>
                
 
                 <td>
-                    <a asp-controller="Home" asp-action="ReadExcel" asp-route-id="@item.Koodi" target="_blank">Recipe</a> |
+                        <a asp-controller="Home" asp-action="ReadExcel" asp-route-id="@item.Koodi" target="_blank" style="font-weight: bold;">Recipe</a> |
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
-                    <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id" target="_blank">Edit</a> |
+                        <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Edit</a> |
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
-                    <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id" target="_blank">Delete</a> |
+                        <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Delete</a> |
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
                         <!--<a asp-controller="Materials" asp-action="RecipeMaterials" asp-route-id="@item.Koodi" target="_blank">RecipeMaterials</a> |-->
 

@@ -1,0 +1,96 @@
+﻿@{
+	ViewData["Title"] = "Settings";
+
+
+
+
+}
+<h1>@ViewData["Title"]</h1>
+
+<div>
+	<h2>Valitse värit materials taulukkoon</h2>
+
+
+	<form method="post" asp-action="SelectMaterialColors">
+		<label for="colors">Valitse väri:</label>
+		<select id="colors" name="materialColor">
+			<option value="lightgreen">Lightgreen</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			
+			<option value="orange">Orange</option>
+		</select>
+		<select id="colors" name="materialColor2">
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			<option value="lightgreen">Lightgreen</option>
+			
+		</select>
+		<input type="submit" value="Valitse">
+	</form>
+
+</div>
+<hr />
+<hr />
+<div>
+	<h2>Valitse värit recipe taulukkoon</h2>
+
+
+	<form method="post" asp-action="SelectRecipeColors">
+		<label for="colors">Valitse väri:</label>
+		<select id="colors" name="recipeColor">
+			<option value="lightgreen">Lightgreen</option>
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			
+		</select>
+		<select id="colors" name="recipeColor2">
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			<option value="lightgreen">Lightgreen</option>
+			
+		</select>
+		<input type="submit" value="Valitse">
+	</form>
+</div>
+<hr />
+<hr />
+<div>
+	<h2>Valitse värit produced taulukkoon</h2>
+
+
+	<form method="post" asp-action="SelectProduceColors">
+		<label for="colors">Valitse väri:</label>
+		<select id="colors" name="produceColor">
+			<option value="lightgreen">Lightgreen</option>
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+
+		</select>
+		<select id="colors" name="produceColor2">
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			<option value="lightgreen">Lightgreen</option>
+
+		</select>
+		<input type="submit" value="Valitse">
+	</form>
+</div>
+

@@ -21,6 +21,13 @@ namespace RefRecipe.Controllers
 
         public async Task<IActionResult> Index(DateTime startdate, DateTime enddate)
         {
+            string produceColor1 = "produceColor1";
+            string produceColor2 = "produceColor2";
+            var colorEntity = _context.Colors.FirstOrDefault(p => p.MaterialColor == produceColor1)?.Colorname;
+            var colorEntity2 = _context.Colors.FirstOrDefault(p => p.MaterialColor == produceColor2)?.Colorname;
+            ViewBag.produceColor1 = colorEntity;
+            ViewBag.produceColor2 = colorEntity2;
+
             List<Produce> Produce;
 
             // TempData["volume"] = filePath;

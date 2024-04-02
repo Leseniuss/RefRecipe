@@ -99,6 +99,12 @@ namespace RefRecipe.Controllers
 
     public IActionResult AuthIndex(string SearchText = "", string SearchCode = "")
         {
+            string recipeColor1 = "recipeColor1";
+            string recipeColor2 = "recipeColor2";
+            var colorEntity = _context.Colors.FirstOrDefault(p => p.MaterialColor == recipeColor1)?.Colorname;
+            var colorEntity2 = _context.Colors.FirstOrDefault(p => p.MaterialColor == recipeColor2)?.Colorname;
+            ViewBag.recipeColor1 = colorEntity;
+            ViewBag.recipeColor2 = colorEntity2;
 
             List<Recipe> recipes;
             if (SearchText != "" && SearchText != null)
@@ -129,6 +135,13 @@ namespace RefRecipe.Controllers
         public IActionResult AuthIndex2(string SearchText = "", string SearchCode = "")
         {
 
+            string recipeColor1 = "recipeColor1";
+            string recipeColor2 = "recipeColor2";
+            var colorEntity = _context.Colors.FirstOrDefault(p => p.MaterialColor == recipeColor1)?.Colorname;
+            var colorEntity2 = _context.Colors.FirstOrDefault(p => p.MaterialColor == recipeColor2)?.Colorname;
+            ViewBag.recipeColor1 = colorEntity;
+            ViewBag.recipeColor2 = colorEntity2;
+
             List<Recipe> recipes;
             if (SearchText != "" && SearchText != null)
             {
@@ -155,10 +168,7 @@ namespace RefRecipe.Controllers
 
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        
 
 
 
