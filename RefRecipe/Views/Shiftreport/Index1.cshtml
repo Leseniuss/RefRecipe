@@ -1,0 +1,139 @@
+﻿@model IEnumerable<RefRecipe.Data.Shiftreport>
+
+@{
+    ViewData["Title"] = "Index";
+    var ShiftreportList = Model.ToList();
+
+    // var productList = produceList.Count;
+    // var volume2 = TempData["volume"];
+
+    ViewBag.Color11 = ViewBag.produceColor1 ?? "lightgreen";
+    ViewBag.Color22 = ViewBag.produceColor2 ?? "orange";
+
+
+
+}
+
+<center>
+    <div class="col-4 p-0 d-flex justify-content-start align-items-center" style="font-size: 24px;">
+        <form asp-controller="Produced" asp-action="Index" class="d-flex">
+            <span style="color: green; font-weight: bold;"> Start Date :</span>
+            <input type="date" name="startdate" style="margin-right: 10px;" />
+            <span style="color: green; font-weight: bold;"> End Date :</span>
+            <input type="date" name="enddate" style="margin-right: 10px;" />
+            <input type="submit" value="Get List" style="color: yellow; font-weight: bold;" />
+        </form>
+    </div>
+</center>
+
+<h3 class="text-left" style="color: blue; font-weight: bold;">Products Made: miuku productList</h3>
+<h3 class="text-left" style="color: blue; font-weight: bold;">Total Volume In Litres: miuku  volume2</h3>
+
+<style>
+
+
+    body {
+        background-image: url("refrescologo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .hometable {
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+        background-image: url("Views/Home/refrescologo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+        .hometable th, .hometable td {
+            border-bottom: 2px solid blue;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .hometable th {
+            background-color: #f2f2f2;
+        }
+</style>
+
+<script>
+    function toggleReport() {
+        var reportDiv = document.getElementById("reportDiv");
+        if (reportDiv.style.display === "none") {
+            reportDiv.style.display = "block";
+        } else {
+            reportDiv.style.display = "none";
+        }
+    }
+</script>
+
+
+<body>
+    <table class="hometable">
+        <thead>
+            <tr>
+                <th>
+                    Näytä raportti
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Header)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Report)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Timestamp)
+                </th>
+
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr style="background-color: @(ShiftreportList.IndexOf(item) % 2 == 0 ? ViewBag.Color11 : ViewBag.Color22)">
+
+                    <td><button onclick="toggleReport()">Näytä raportti</button></td>
+
+                    <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Header)</td>
+                    <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Report)</td>
+                    <td style="font-weight: bold;">@DateTimeOffset.FromUnixTimeSeconds(item.Timestamp).LocalDateTime.ToString("dd-MM-yyyy HH:mm:ss")</td>
+
+
+                </tr>
+                <tr>
+                    <td>
+                        <div id="reportDiv" style="display: none;">
+                            @foreach (var item2 in Model)
+                            {
+                                <p>@Html.DisplayFor(modelItem => item.Report)</p>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</body>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="text-danger">@ViewBag.ErrorMessage</div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

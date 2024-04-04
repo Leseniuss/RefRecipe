@@ -15,7 +15,7 @@ namespace RefRecipe.Controllers
 			// ExcelPackage.LicenseContext = LicenseContext.Default;
 		}
 
-		public IActionResult Privacy()
+		public IActionResult Index()
         {
             
            // TempData["Color1"] = "blue";

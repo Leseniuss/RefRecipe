@@ -43,7 +43,7 @@
                         </li>
                         <span style="margin-right: 100px;"></span>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Settings" asp-action="Privacy" style="color: red; font-weight: bold;">Settings / HELP</a>
+                            <a class="nav-link" asp-area="" asp-controller="Settings" asp-action="Index" style="color: red; font-weight: bold;">Settings / HELP</a>
                         </li>
                         <span style="margin-right: 100px;"></span>
                         <li class="nav-item">
@@ -51,11 +51,15 @@
                         </li>
                         <span style="margin-right: 100px;"></span>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Card" asp-action="ReadIndex" style="color: yellow; font-weight: bold;">ReadCard</a>
+                            <a class="nav-link" asp-area="" asp-controller="Card" asp-action="Index" style="color: yellow; font-weight: bold;">ReadCard</a>
                         </li>
                         <span style="margin-right: 100px;"></span>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Produced" asp-action="Index" style="color: darkorange; font-weight: bold;">Produced</a>
+                        </li>
+                        <span style="margin-right: 100px;"></span>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Shiftreport" asp-action="Index" style="color: darksalmon; font-weight: bold;">ShiftReport</a>
                         </li>
                         <span style="margin-right: 100px;"></span>
                         <li class="nav-item">
@@ -76,7 +80,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.Now.ToString("dd/MM/yyyy") - RefRecipe - <a asp-area="" asp-controller="Home" asp-action="Privacy">HELP</a>
+            &copy; @DateTime.Now.ToString("dd/MM/yyyy") - RefRecipe - <a asp-area="" asp-controller="Settings" asp-action="Index">HELP</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

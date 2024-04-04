@@ -1,0 +1,150 @@
+﻿@{
+	ViewData["Title1"] = "Settings";
+	ViewData["Title2"] = "Help";
+
+
+
+
+}
+<h1 style="color: orangered">@ViewData["Title1"]</h1>
+
+<div>
+	<h2 style="color: orange">Valitse värit materials taulukkoon</h2>
+
+
+	<form method="post" asp-action="SelectMaterialColors" style="font-size: 24px; color: orangered;">
+		<label for="colors">Valitse väri:</label>
+		<select id="colors" name="materialColor">
+			<option value="lightgreen">Lightgreen</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			
+			<option value="orange">Orange</option>
+		</select>
+		<select id="colors" name="materialColor2">
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			<option value="lightgreen">Lightgreen</option>
+			
+		</select>
+		<input type="submit" value="Valitse">
+	</form>
+
+</div>
+<hr />
+<hr />
+<div >
+	<h2 style="color: green">Valitse värit recipe taulukkoon</h2>
+
+
+	<form method="post" asp-action="SelectRecipeColors" style="font-size: 24px; color: green;">
+		<label for="colors">Valitse väri:</label>
+		<select id="colors" name="recipeColor">
+			<option value="lightgreen">Lightgreen</option>
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			
+		</select>
+		<select id="colors" name="recipeColor2">
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			<option value="lightgreen">Lightgreen</option>
+			
+		</select>
+		<input type="submit" value="Valitse">
+	</form>
+</div>
+<hr />
+<hr />
+<div>
+	<h2 style="color: blue">Valitse värit produced taulukkoon</h2>
+
+
+	<form method="post" asp-action="SelectProduceColors" style="font-size: 24px; color: blue;">
+		<label for="colors">Valitse väri:</label>
+		<select id="colors" name="produceColor">
+			<option value="lightgreen">Lightgreen</option>
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+
+		</select>
+		<select id="colors" name="produceColor2">
+			<option value="orange">Orange</option>
+			<option value="red">Punainen</option>
+			<option value="blue">Sininen</option>
+			<option value="green">Vihreä</option>
+			<option value="yellow">Keltainen</option>
+			<option value="lightgreen">Lightgreen</option>
+
+		</select>
+		<input type="submit" value="Valitse">
+	</form>
+</div>
+<hr />
+<h1 style="color: orangered">@ViewData["Title2"]</h1>
+
+<div style="color: blue">
+	<h2>Reseptien haku / luonti, muokkaus, poisto / lukeminen</h2>
+	<h3>Salasanan antamisen jälkeen aukeaa resepti lista. Hakukentät toimii myös osittais haulla esim. Vadelmajuomaa etsiessä tuotenimen 
+		kohdalle riittää vaikka "de" ilman heittomerkkejä. Isoilla ja pienillä kirjaimilla on väliä haussa. Tuotekoodi haku toimii samoin eli hakiessa
+		61018812 koodia riittää hakuun esimerkiksi "88" ilman heittomerkkejä. Kaikki reseptit saa listaan painamalla "Search" nappia ilman hakuehtoa
+	</h3>
+	<h3>
+		Uusi resepti luodaan "Create New Recipe" napilla. Luonti sivulla kirjoitetaan kenttiin koodi, nimi ja satsikoko. Koodi on oltava sama kuin
+		excel tiedoston nimi minkä reseptin on luomassa. Koodin antamisen jälkeen "Create New Recipe" nappia painamalla resepti luodaan.
+		Muokkaus tapahtuu "Edit" nappia painamalla jonka jälkeen tietoja pääsee muuttamaan jonka jälkeen annetaan salasana ja painetaan "Edit Recipe" nappia.
+		Poisto tapahtuu "Delete" nappia käyttämällä ja samoin salasanan jälkeen "Delete Recipe" napin painamisen jälkeen resepti poistuu listalta.
+	</h3>
+	<h3>
+		Reseptin lukeminen tapahtuu "Recipe" napista jolloin resepti aukeaa uuteen välilehteen. Jos reseptiä ei löydy avautuu uusi välilehti joka
+		ilmoittaa että reseptiä ei löydy, tämän välilehden voi sulkea. Resepti sisältää myös raaka-aineiden varastopaikat.
+		Kun kaikki raaka-aineet on lisätty ja VAIN silloin kun kaikki raaka-aineet on lisätty kuitataan hyväksyntä boksi ja tämän jälkeen vielä painetaan
+		"All Materials Added.. CLick ME" nappia jolloin valmistettu tuote rekisteröityy tuotettujen listaan.
+	</h3>
+</div>
+<div style="color: red">
+	<h2>Materiaalien ja raaka-aineiden haku / muokkaus / poisto MaterialsIndexillä</h2>
+	<h3>
+		MaterialsIndex hakukentät toimivat samalla tavalla kuin reseptilistan haku. Uuden luominen ja vanhan muokkaaminen / poistaminen
+		toimivat myös samalla periaatteella. MaterialsIndex auttaa löytämään kaikki nopeammin ja sieltä tulee tieto varastopaikoista myös resepteihin.
+	</h3>
+</div>
+<div style="color: green">
+	<h2>ReadCard eli valmistuskorttien katselu</h2>
+	<h3>
+		ReadCard sivulla aukeaa excel tiedoston valinta joka aukaisee resurssienhallinnan jota kautta valitaan valmistuskortti mitä halutaan tarkastella.
+		Valinnan jälkeen painetaan "Lataa tiedot Excelistä" jolloin valmistuskortti aukeaa sivulle. Painamalla uudestaan "Valitse tiedosto" ja sen
+		jälkeen "Lataa tiedot Excelistä" saa valittua uuden valmistuskortin jota tarkastella.
+	</h3>
+</div>
+<div style="color: darkmagenta">
+	<h2>Produce taulukko eli valmistetut tuotteet</h2>
+	<h3>
+		Valmistettujen tuotteiden lista sivulla aukeaa myös 2 tietoa. Kuinka monta tuotetta on haetulla aikavälillä tuotettu ja kuinka monta 
+		litraa on aikavälillä tuotettu. Aikavälin haku toimii asettamalla start date ja end date ja painamalla tämän jälkeen "Get List" nappia.
+		Aikavälin haku toimii myös joko pelkällä start date tai end date asettamisella. Kaikki valmistetut tuotteet saa listaan kun hakuehtoja ei ole asetettu.
+	</h3>
+</div>
+<div style="color: darkviolet">
+	<h2>SfhitReport eli vuororaportti</h2>
+	<h3>
+		Vuororaportointi haku toimii samoin kuin valmistettujen tuotteiden käyttämällä start ja end date tai jompaakumpaa. Ilman hakuehtoja listaan
+		tulee kaikki kirjoitetut raportit. "Create New Report" toimii samalla periaatteella kuin uuden reseptin tai materiaali luonti. Raportti lista
+		näyttää raportin otsikon johon kirjoitetaan lyhyesti ja ytimekkäästi mikä vuoro oli kyseessä ja yleinen kommentti. Itse raportin saa listasta
+		näkyviin painamalla "Näytä raportti" nappia jolloin kyseinen raportti aukeaa nähtäväksi. Raportin saa suljettua painamalla "Sulje raportti" nappia.
+	</h3>
+</div>
