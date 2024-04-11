@@ -47,7 +47,7 @@ namespace RefRecipe.Controllers
             string recipeColor22 = "recipeColor2";
             var colorEntity = _context.Colors.FirstOrDefault(p => p.MaterialColor == recipeColor11);
             var colorEntity2 = _context.Colors.FirstOrDefault(p => p.MaterialColor == recipeColor22);
-
+            
             colorEntity.Colorname = recipeColor;
             colorEntity2.Colorname = recipeColor2;
 			_context.SaveChanges();

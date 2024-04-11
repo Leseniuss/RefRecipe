@@ -20,11 +20,11 @@ namespace RefRecipe.Controllers
         public MaterialsController(RefRecipeContext context)
         {
             _context = context;
-            // ExcelPackage.LicenseContext = LicenseContext.Default;
+            
         }
 
          public IList<Material> Material { get; set; } = default!;
-       // public IList<Recipe> Recipe { get; set; } = default!;
+       
         public IActionResult Index(string SearchText2 = "", string SearchCode2 = "")
         {
             
