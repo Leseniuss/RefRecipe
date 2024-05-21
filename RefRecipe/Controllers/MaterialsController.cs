@@ -41,7 +41,7 @@ namespace RefRecipe.Controllers
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
               //  recipes = _context.Recipes.Where(p => p.Nimi.Contains(SearchText)).ToList();
-              materials = _context.Materials.Where(p => p.Name.Contains(SearchText2)).ToList();
+              materials = _context.Materials.Where(p => p.Nimi.Contains(SearchText2)).ToList();
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             }
@@ -49,13 +49,13 @@ namespace RefRecipe.Controllers
             {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                // recipes = _context.Recipes.Where(p => p.Koodi.Contains(SearchCode)).ToList();
-               materials = _context.Materials.Where(p => p.SapCode.Contains(SearchCode2)).ToList();
+               materials = _context.Materials.Where(p => p.Koodi.Contains(SearchCode2)).ToList();
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
             else
             {
                // recipes = _context.Recipes.OrderBy(p => p.Koodi).ToList();
-               materials = _context.Materials.OrderBy(p => p.SapCode).ToList();
+               materials = _context.Materials.OrderBy(p => p.Koodi).ToList();
             }
 
 
@@ -117,7 +117,7 @@ namespace RefRecipe.Controllers
         {
             if (string.IsNullOrEmpty(password))
             {
-                ViewBag.ErrorMessage = "Anna Salasana";
+                ViewBag.ErrorMessage = "ANNA SALASANA";
                 return View();
             }
             if (ModelState.IsValid && password != null && password == "22")

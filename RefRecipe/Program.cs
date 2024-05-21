@@ -33,7 +33,7 @@ Log.Logger = new LoggerConfiguration()
             // Ota käyttöön Information-tason logit
             .MinimumLevel.Override("System", LogEventLevel.Information)
             .CreateLogger();
-Log.Information("Program Start");
+Log.Information("Ohjelma käynnistetty");
 
 // seed the db
 using (var scope = app.Services.CreateScope())

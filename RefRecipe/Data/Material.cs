@@ -8,12 +8,12 @@ namespace RefRecipe.Data
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nimi on pakollinen.")]
-        public string? Name { get; set; }
+        public string? Nimi { get; set; }
 
         [Required(ErrorMessage = "Koodi on pakollinen.")]
-        public string? SapCode { get; set; }
+        public string? Koodi { get; set; }
 
-        public string? Location { get; set; }
+        public string? Sijainti { get; set; }
 
     }
 }

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1 style="color: blue;">Create New Materials</h1>
+<h1 style="color: blue;">Luo uusi raaka-aine</h1>
 
 <hr />
 <style>
@@ -37,27 +37,27 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         
             <div class="form-group">
-                <label asp-for="SapCode" class="control-label" style="font-size: 20px; color: blue;"></label>
-                <input asp-for="SapCode" class="form-control" />
-                <span asp-validation-for="SapCode" class="text-danger"></span>
+                <label asp-for="Koodi" class="control-label" style="font-size: 20px; color: blue;"></label>
+                <input asp-for="Koodi" class="form-control" />
+                <span asp-validation-for="Koodi" class="text-danger"></span>
             </div>
            
             <div class="form-group">
-                <label asp-for="Name" class="control-label" style="font-size: 20px; color: blue;"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Nimi" class="control-label" style="font-size: 20px; color: blue;"></label>
+                <input asp-for="Nimi" class="form-control" />
+                <span asp-validation-for="Nimi" class="text-danger"></span>
             </div>
           
             <div class="form-group">
-                <label asp-for="Location" class="control-label" style="font-size: 20px; color: blue;"></label>
-                <input asp-for="Location" class="form-control" />
-                <span asp-validation-for="Location" class="text-danger"></span>
+                <label asp-for="Sijainti" class="control-label" style="font-size: 20px; color: blue;"></label>
+                <input asp-for="Sijainti" class="form-control" />
+                <span asp-validation-for="Sijainti" class="text-danger"></span>
             </div>
        
             <div class="form-group">
-                <label for="password">Enter Password:</label>
+                <label for="password">Anna salasana :</label>
                 <input type="password" id="password" name="password" />
-                <input type="submit" value="Create New Material" class="btn btn-primary" />
+                <input type="submit" value="Luo uusi raaka-aine" class="btn btn-primary" />
             </div>
             
         </form>
@@ -71,7 +71,7 @@
 <div>
    
    <!-- <a class="btn-group" href="https://localhost:7013/">Back to List</a> -->
-    <a class="btn-group" href="/Materials">Back to materials List</a>
+    <a class="btn-group" href="/Materials">Takaisin raaka-aine listaan</a>
 </div>
 <a href="https://www.refresco.fi/fi/"> <img src="/refrescologo.png" width="40%" height="20%" /></a>
 @section Scripts {

@@ -62,7 +62,7 @@ namespace RefRecipe.Controllers
                 {
 
                     // Oikea salasana, ohjaa AuthIndex
-                    Log.Warning("Ohjataan Authindex");
+                    Log.Warning("Reseptilista avattu");
                      return RedirectToAction("AuthIndex");
                     
                    // return RedirectToAction("Auth2");
@@ -314,7 +314,7 @@ namespace RefRecipe.Controllers
                                         if ((col == 10) && row >= 11 && row <= 20)
                                         {
                                             // rowData.Add(codes[rowmi]);
-                                            string locationQuery = "SELECT Location FROM Materials WHERE SapCode = @id";
+                                            string locationQuery = "SELECT Sijainti FROM Materials WHERE Koodi = @id";
                                             using (SQLiteCommand locationCommand = new SQLiteCommand(locationQuery, connection))
                                             {
                                                 locationCommand.Parameters.Add(new SQLiteParameter("@id", DbType.String) { Value = codes[rowmi] });
@@ -337,8 +337,8 @@ namespace RefRecipe.Controllers
                                 // HttpContext.Session.SetString("filePathsave2", filePath);
                                 TempData["filePathsave2"] = filePath;
                                 filePathsave = filePath;
-                                Log.Information(filePathsave);
-                                Log.Information("ReadExcel {filePath}", filePath);
+                               // Log.Information(filePathsave);
+                                Log.Information("Avattu {filePath} resepti", filePath);
                                 return View(data); 
                                 //  Console.WriteLine(codeData[0] + " 121212121212121212121212121121212");
                                // Debug.WriteLine(codeData[0] + " 121212121212121212121212121121212");
@@ -435,7 +435,7 @@ namespace RefRecipe.Controllers
                                         if ((col == 10) && row >= 11 && row <= 20)
                                         {
                                             // rowData.Add(codes[rowmi]);
-                                            string locationQuery = "SELECT Location FROM Materials WHERE SapCode = @id";
+                                            string locationQuery = "SELECT Sijainti FROM Materials WHERE Koodi = @id";
                                             using (SQLiteCommand locationCommand = new SQLiteCommand(locationQuery, connection))
                                             {
                                                 locationCommand.Parameters.Add(new SQLiteParameter("@id", DbType.String) { Value = codes[rowmi] });

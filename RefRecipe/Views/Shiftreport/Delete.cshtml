@@ -5,7 +5,7 @@
 }
 
 
-<h1 style="color: red">Are you sure you want to delete this report?</h1>
+<h1 style="color: red">Oletko varma että haluat poistaa tämän vuororaportin?</h1>
 <hr />
 
 <div class="row">
@@ -14,7 +14,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
          
             <div class="form-group">
-                <label asp-for="Header" class="control-label" style="font-size: 20px; color: orangered;"></label>
+                <!--  <label asp-for="Header" class="control-label" style="font-size: 20px; color: orangered;"></label> -->
+                <h3 style="font-size: 20px; color: red;"> Otsikko</h3>
                 <input asp-for="Header" class="form-control" readonly />
                 <span asp-validation-for="Header" class="text-danger"></span>
             </div>
@@ -26,7 +27,8 @@
              </div> -->
 
             <div class="form-group">
-                <label asp-for="Report" class="control-label" style="font-size: 20px; color: orangered;"></label>
+                <!-- <label asp-for="Report" class="control-label" style="font-size: 20px; color: orangered;"></label> -->
+                <h3 style="font-size: 20px; color: red;"> Vuororaportti</h3>
                 <textarea asp-for="Report" class="form-control" readonly rows="5"></textarea>
                 <span asp-validation-for="Report" class="text-danger"></span>
             </div>
@@ -34,7 +36,7 @@
             <div class="form-group">
                 <label for="password">Enter Password:</label>
                 <input type="password" id="password" name="password" />
-                <input type="submit" value="Delete Report" class="btn btn-primary" />
+                <input type="submit" value="Poista vuororaportti" class="btn btn-primary" />
             </div>
            
         </form>
@@ -46,7 +48,7 @@
 }
 
 <div>
-    <a class="btn-group" href="/Shiftreport/Index">Back To Report List</a>
+    <a class="btn-group" href="/Shiftreport/Index">Takaisin vuororaportti listaan</a>
 </div>
 <a href="https://www.refresco.fi/fi/"> <img src="/refrescologo.png" width="40%" height="20%" /></a>
 @section Scripts {

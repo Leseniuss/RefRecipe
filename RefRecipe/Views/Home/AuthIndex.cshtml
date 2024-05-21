@@ -8,7 +8,7 @@
     ViewBag.Color22 = ViewBag.recipeColor2 ?? "orange";
 }
 
-<h1 style="color: green;">Welcome to the Recipe database for Refresco Finland OY</h1>
+<h1 style="color: green;">Tervetuloa resepti tietokantaan</h1>
 <style>
    
 
@@ -45,7 +45,7 @@
     <form asp-controller="Home" asp-action="AuthIndex">
         <span class="btn-group">
             <input class="form-control" type="text" name="SearchText" placeholder="Etsi tuotenimellä">
-            <input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" value="Search" />
+            <input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" value="Etsi" />
         </span>
     </form>
 </div>
@@ -53,14 +53,14 @@
     <form asp-controller="Home" asp-action="AuthIndex">
         <span class="btn-group">
             <input class="form-control" type="text" name="SearchCode" placeholder="Etsi tuotekoodilla">
-            <input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" value="Search" />
+            <input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" value="Etsi" />
         </span>
     </form>
 
    
 </div>
 <div class="col-4 p-0 justify-content-end">
-    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Recipes/Create">Create New Recipe</a>
+    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Recipes/Create">Luo uusi resepti</a>
 </div>
 
 
@@ -95,11 +95,11 @@
                
 
                 <td>
-                        <a asp-controller="Home" asp-action="ReadExcel" asp-route-id="@item.Koodi" target="_blank" style="font-weight: bold;">Recipe</a> |
+                        <a asp-controller="Home" asp-action="ReadExcel" asp-route-id="@item.Koodi" target="_blank" style="font-weight: bold;">Resepti</a> |
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
-                        <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Edit</a> |
+                        <a asp-controller="Recipes" asp-action="edit" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Muokkaa</a> |
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
-                        <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Delete</a> |
+                        <a asp-controller="Recipes" asp-action="delete" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Poista</a> |
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
                         <!--<a asp-controller="Materials" asp-action="RecipeMaterials" asp-route-id="@item.Koodi" target="_blank">RecipeMaterials</a> |-->
 
@@ -112,6 +112,7 @@
     </tbody>
 </table>
 </body>
+<a href="https://www.refresco.fi/fi/"> <img src="/refrescologo.png" width="60%" height="40%" /></a>
 @if (ViewBag.ErrorMessage != null)
 {
     <div class="text-danger">@ViewBag.ErrorMessage</div>

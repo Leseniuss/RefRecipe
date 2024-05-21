@@ -44,13 +44,13 @@
         var submitButton = document.getElementById("submitButton");
         if (checkbox.checked) {
             // Checkbox on valittu, vaihda napin teksti ja väri
-            submitButton.innerHTML = "All Materials Added.. Click ME";
+            submitButton.innerHTML = "Lisää tuotettujen listaan klikkaamalla tästä";
             submitButton.classList.remove("btn-primary");
             submitButton.classList.add("btn-success");
             submitButton.disabled = false;
         } else {
             // Checkbox ei ole valittu, palauta alkuperäinen teksti ja väri
-            submitButton.innerHTML = "Checkbox When Materials Added";
+            submitButton.innerHTML = "Klikkaa laatikkoa kun kaikki raaka-aineet lisätty";
             submitButton.classList.remove("btn-success");
             submitButton.classList.add("btn-primary");
             submitButton.disabled = true;
@@ -65,13 +65,13 @@
 
 <div class="row">
     <div class="col-6">
-        <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Home/AuthIndex">Back To List</a>
+        <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Home/AuthIndex">Takaisin resepti listaan</a>
     </div>
     <div class="col-4 text-center">
         <form method="post" asp-controller="Produced" asp-action="Create">
            
             <input type="checkbox" id="myCheckbox" class="checkbox" onchange="handleCheckboxChange(this)" />
-            <button type="submit" class="btn btn-primary" id="submitButton" disabled>Checkbox when all Components Added </button>
+            <button type="submit" class="btn btn-primary" id="submitButton" disabled>Klikkaa laatikkoa kun kaikki raaka-aineet lisätty</button>
             <!-- <button type="submit" class="btn btn-primary" id="submitButton">Checkbox When Materials Added</button> -->
  
     </form>

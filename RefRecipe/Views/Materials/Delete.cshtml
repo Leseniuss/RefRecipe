@@ -4,8 +4,8 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1 style="color: orangered">Delete Materials</h1>
-<h3 style ="color: orangered">Are you sure you want to delete this?</h3>
+
+<h3 style ="color: orangered">Oletko varma että haluat poistaa tämän raaka-aineen?</h3>
 
 
 <hr />
@@ -17,24 +17,24 @@
          
             
             <div class="form-group">
-                <label asp-for="SapCode" class="control-label" style="font-size: 20px; color: orangered;"></label>
-                <input asp-for="SapCode" class="form-control" readonly />
-                <span asp-validation-for="SapCode" class="text-danger"></span>
+                <label asp-for="Koodi" class="control-label" style="font-size: 20px; color: orangered;"></label>
+                <input asp-for="Koodi" class="form-control" readonly />
+                <span asp-validation-for="Koodi" class="text-danger"></span>
             </div>
          
             <div class="form-group">
-                <label asp-for="Name" class="control-label" style="font-size: 20px; color: orangered;"></label>
-                <input asp-for="Name" class="form-control" readonly />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Nimi" class="control-label" style="font-size: 20px; color: orangered;"></label>
+                <input asp-for="Nimi" class="form-control" readonly />
+                <span asp-validation-for="Nimi" class="text-danger"></span>
             </div>
        
             
 
          
             <div class="form-group">
-                <label for="password">Enter Password:</label>
+                <label for="password">Anna salasana :</label>
                 <input type="password" id="password" name="password" />
-                <input type="submit" value="Delete Material" class="btn btn-primary" />
+                <input type="submit" value="Poista raaka-aine" class="btn btn-primary" />
             </div>
           
         </form>
@@ -46,7 +46,7 @@
 }
 
 <div>
-    <a class="btn-group" href="/Materials">Back To Materials List</a>
+    <a class="btn-group" href="/Materials">Takaisin raaka-aine listaan</a>
 </div>
 <a href="https://www.refresco.fi/fi/"> <img src="/refrescologo.png" width="40%" height="20%" /></a>
 

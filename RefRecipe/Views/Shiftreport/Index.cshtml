@@ -15,18 +15,18 @@
 }
 
 <div class="col-4 p-0 justify-content-end">
-    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Shiftreport/Create">Create New Report</a>
+    <a class="p-1 m-lg-2 btn btn-sm btn-info" href="/Shiftreport/Create">Luo uusi vuororaportti</a>
 </div>
 
 <center>
     
     <div class="col-4 p-0 d-flex justify-content-start align-items-center" style="font-size: 24px;">
         <form asp-controller="Shiftreport" asp-action="Index" class="d-flex">
-            <span style="color: green; font-weight: bold;"> Start Date :</span>
+            <span style="color: green; font-weight: bold;"> Aloitus pvm :</span>
             <input type="date" name="startdate" style="margin-right: 10px;" />
-            <span style="color: green; font-weight: bold;"> End Date :</span>
+            <span style="color: green; font-weight: bold;"> Lopetus pvm :</span>
             <input type="date" name="enddate" style="margin-right: 10px;" />
-            <input type="submit" value="Get List" style="color: yellow; font-weight: bold;" />
+            <input type="submit" value="Listaa raportit" style="color: yellow; font-weight: bold;" />
         </form>
     </div>
 </center>
@@ -76,25 +76,13 @@
         }
     }
 </script>
-
+<hr />
 
 <body>
     <table class="hometable">
         <thead>
             <tr>
-                <th>
-                    Näytä raportti
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Header)
-                </th>
                 
-                <th>
-                    @Html.DisplayNameFor(model => model.Timestamp)
-                </th>
                 <th></th>
             </tr>
         </thead>
@@ -103,16 +91,16 @@
             {
                 <tr style="background-color: @(ShiftreportList.IndexOf(item) % 2 == 0 ? ViewBag.Color11 : ViewBag.Color22)">
                     <td><button id="showReportBtn@(item.Id)" onclick="toggleReport('@item.Id', this)">Näytä raportti</button></td>
-                    <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Id)</td>
+                    <!-- <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Id)</td> -->
                     <td style="font-weight: bold;">@Html.DisplayFor(modelItem => item.Header)</td>
                     
                     <td style="font-weight: bold;">@DateTimeOffset.FromUnixTimeSeconds(item.Timestamp).LocalDateTime.ToString("dd-MM-yyyy HH:mm:ss")</td>
                     <td>
                        
-                        <a asp-controller="Shiftreport" asp-action="edit" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Edit</a> |
+                        <a asp-controller="Shiftreport" asp-action="edit" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Muokkaa</a> |
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
-                        <a asp-controller="Shiftreport" asp-action="delete" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Delete</a> |
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> |
+                        <a asp-controller="Shiftreport" asp-action="delete" asp-route-id="@item.Id" target="_blank" style="font-weight: bold;">Poista</a> |
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
                         
 
 

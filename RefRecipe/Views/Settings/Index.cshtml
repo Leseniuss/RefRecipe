@@ -1,35 +1,86 @@
 ﻿@{
-	ViewData["Title1"] = "Settings";
+	ViewData["Title1"] = "Asetukset";
 	ViewData["Title2"] = "Help";
 
-
-
-
 }
+
 <h1 style="color: orangered">@ViewData["Title1"]</h1>
 
+<div style="display: flex; justify-content: center; gap: 5px; align-items: flex-start;">
+	<div style="flex: 1; margin: 5px;">
+		<h2 style="color: orange">Valitse värit raaka-aine listaan</h2>
+
+		<form method="post" asp-action="SelectMaterialColors" style="font-size: 24px; color: orangered;">
+			<label for="colors">Valitse värit:</label>
+			<select id="colors" name="materialColor">
+				<option value="lightgreen">Vaaleenvihreä</option>
+				<option value="red">Punainen</option>
+				<option value="blue">Sininen</option>
+				<option value="green">Vihreä</option>
+				<option value="yellow">Keltainen</option>
+				<option value="orange">Oranssi</option>
+			</select>
+			<select id="colors" name="materialColor2">
+				<option value="orange">Oranssi</option>
+				<option value="red">Punainen</option>
+				<option value="blue">Sininen</option>
+				<option value="green">Vihreä</option>
+				<option value="yellow">Keltainen</option>
+				<option value="lightgreen">Vaaleenvihreä</option>
+			</select>
+			<input type="submit" value="Valitse">
+		</form>
+	</div>
+	<div style="flex: 1;">
+		<h2 style="color: green">Valitse värit reseptit listaan</h2>
+
+		<form method="post" asp-action="SelectRecipeColors" style="font-size: 24px; color: green;">
+			<label for="colors">Valitse värit:</label>
+			<select id="colors" name="recipeColor">
+				<option value="lightgreen">Vaaleenvihreä</option>
+				<option value="orange">Oranssi</option>
+				<option value="red">Punainen</option>
+				<option value="blue">Sininen</option>
+				<option value="green">Vihreä</option>
+				<option value="yellow">Keltainen</option>
+			</select>
+			<select id="colors" name="recipeColor2">
+				<option value="orange">Oranssi</option>
+				<option value="red">Punainen</option>
+				<option value="blue">Sininen</option>
+				<option value="green">Vihreä</option>
+				<option value="yellow">Keltainen</option>
+				<option value="lightgreen">Vaaleenvihreä</option>
+			</select>
+			<input type="submit" value="Valitse">
+		</form>
+	</div>
+</div>
+<hr />
+<hr />
+
 <div>
-	<h2 style="color: orange">Valitse värit materials taulukkoon</h2>
+	<h2 style="color: orange">Valitse värit raaka-aine taulukkoon</h2>
 
 
 	<form method="post" asp-action="SelectMaterialColors" style="font-size: 24px; color: orangered;">
-		<label for="colors">Valitse väri:</label>
+		<label for="colors">Valitse värit:</label>
 		<select id="colors" name="materialColor">
-			<option value="lightgreen">Lightgreen</option>
+			<option value="lightgreen">Vaaleenvihreä</option>
 			<option value="red">Punainen</option>
 			<option value="blue">Sininen</option>
 			<option value="green">Vihreä</option>
 			<option value="yellow">Keltainen</option>
 			
-			<option value="orange">Orange</option>
+			<option value="orange">Oranssi</option>
 		</select>
 		<select id="colors" name="materialColor2">
-			<option value="orange">Orange</option>
+			<option value="orange">Oranssi</option>
 			<option value="red">Punainen</option>
 			<option value="blue">Sininen</option>
 			<option value="green">Vihreä</option>
 			<option value="yellow">Keltainen</option>
-			<option value="lightgreen">Lightgreen</option>
+			<option value="lightgreen">Vaaleenvihreä</option>
 			
 		</select>
 		<input type="submit" value="Valitse">
@@ -39,14 +90,14 @@
 <hr />
 <hr />
 <div >
-	<h2 style="color: green">Valitse värit recipe taulukkoon</h2>
+	<h2 style="color: green">Valitse värit reseptit taulukkoon</h2>
 
 
 	<form method="post" asp-action="SelectRecipeColors" style="font-size: 24px; color: green;">
-		<label for="colors">Valitse väri:</label>
+		<label for="colors">Valitse värit:</label>
 		<select id="colors" name="recipeColor">
-			<option value="lightgreen">Lightgreen</option>
-			<option value="orange">Orange</option>
+			<option value="lightgreen">Vaaleenvihreä</option>
+			<option value="orange">Oranssi</option>
 			<option value="red">Punainen</option>
 			<option value="blue">Sininen</option>
 			<option value="green">Vihreä</option>
@@ -54,12 +105,12 @@
 			
 		</select>
 		<select id="colors" name="recipeColor2">
-			<option value="orange">Orange</option>
+			<option value="orange">Oranssi</option>
 			<option value="red">Punainen</option>
 			<option value="blue">Sininen</option>
 			<option value="green">Vihreä</option>
 			<option value="yellow">Keltainen</option>
-			<option value="lightgreen">Lightgreen</option>
+			<option value="lightgreen">Vaaleenvihreä</option>
 			
 		</select>
 		<input type="submit" value="Valitse">
@@ -68,14 +119,14 @@
 <hr />
 <hr />
 <div>
-	<h2 style="color: blue">Valitse värit produced taulukkoon</h2>
+	<h2 style="color: blue">Valitse värit tuotetut taulukkoon</h2>
 
 
 	<form method="post" asp-action="SelectProduceColors" style="font-size: 24px; color: blue;">
-		<label for="colors">Valitse väri:</label>
+		<label for="colors">Valitse värit:</label>
 		<select id="colors" name="produceColor">
-			<option value="lightgreen">Lightgreen</option>
-			<option value="orange">Orange</option>
+			<option value="lightgreen">Vaaleenvihreä</option>
+			<option value="orange">Oranssi</option>
 			<option value="red">Punainen</option>
 			<option value="blue">Sininen</option>
 			<option value="green">Vihreä</option>
@@ -83,12 +134,12 @@
 
 		</select>
 		<select id="colors" name="produceColor2">
-			<option value="orange">Orange</option>
+			<option value="orange">Oranssi</option>
 			<option value="red">Punainen</option>
 			<option value="blue">Sininen</option>
 			<option value="green">Vihreä</option>
 			<option value="yellow">Keltainen</option>
-			<option value="lightgreen">Lightgreen</option>
+			<option value="lightgreen">Vaaleenvihreä</option>
 
 		</select>
 		<input type="submit" value="Valitse">
@@ -101,11 +152,11 @@
 	<h2>Reseptien haku / luonti, muokkaus, poisto / lukeminen</h2>
 	<h3>Salasanan antamisen jälkeen aukeaa resepti lista. Hakukentät toimii myös osittais haulla esim. Vadelmajuomaa etsiessä tuotenimen 
 		kohdalle riittää vaikka "de" ilman heittomerkkejä. Isoilla ja pienillä kirjaimilla on väliä haussa. Tuotekoodi haku toimii samoin eli hakiessa
-		61018812 koodia riittää hakuun esimerkiksi "88" ilman heittomerkkejä. Kaikki reseptit saa listaan painamalla "Search" nappia ilman hakuehtoa
+		61018812 koodia riittää hakuun esimerkiksi "88" ilman heittomerkkejä. Kaikki reseptit saa listaan painamalla "Etsi" nappia ilman hakuehtoa
 	</h3>
 	<h3>
-		Uusi resepti luodaan "Create New Recipe" napilla. Luonti sivulla kirjoitetaan kenttiin koodi, nimi ja satsikoko. Koodi on oltava sama kuin
-		excel tiedoston nimi minkä reseptin on luomassa. Koodin antamisen jälkeen "Create New Recipe" nappia painamalla resepti luodaan.
+		Uusi resepti luodaan "Luo uusi resepti" napilla. Luonti sivulla kirjoitetaan kenttiin koodi, nimi ja satsikoko. Koodi on oltava sama kuin
+		excel tiedoston nimi minkä reseptin on luomassa. Koodin antamisen jälkeen "Luo uusi resepti" nappia painamalla resepti luodaan.
 		Muokkaus tapahtuu "Edit" nappia painamalla jonka jälkeen tietoja pääsee muuttamaan jonka jälkeen annetaan salasana ja painetaan "Edit Recipe" nappia.
 		Poisto tapahtuu "Delete" nappia käyttämällä ja samoin salasanan jälkeen "Delete Recipe" napin painamisen jälkeen resepti poistuu listalta.
 	</h3>
